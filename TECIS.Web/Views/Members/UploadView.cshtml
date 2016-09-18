@@ -1,0 +1,240 @@
+﻿@model IEnumerable<TECIS.Data.Models.MemberUpload>
+
+@{
+    ViewBag.Title = "Recently Uploaded";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Recently Uploaded Members</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>MemberUpload</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List</h5>
+                    <div class="ibox-tools">
+                        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs" })
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.datejoined)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.surname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.firstname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.othernames)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.telephone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.email_address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.dob)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.gender)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.maritalstatus)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.wedding_anniv)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.occupation)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.officeaddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cluster)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serviceunit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.no_of_children)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_1_age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_1_birthday)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_2_age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_2_birthday)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_3)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_3_age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_3_birthday)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_4)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_4_age)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.child_4_birthday)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.createdby)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.createddate)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.datejoined)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.surname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.firstname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.othernames)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.telephone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.email_address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dob)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.maritalstatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.wedding_anniv)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.occupation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.officeaddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cluster)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.serviceunit)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.no_of_children)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_1_age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_1_birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_2_age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_2_birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_3)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_3_age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_3_birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_4)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_4_age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.child_4_birthday)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.createdby)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.createddate)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

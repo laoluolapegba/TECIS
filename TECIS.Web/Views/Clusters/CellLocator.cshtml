@@ -1,0 +1,207 @@
+﻿
+@model IEnumerable<TECIS.Data.ViewModels.CellSearchResultViewModel>
+@using TECIS.Data.ViewModels;
+@using System.Linq
+@{
+    ViewBag.Title = "Connect group";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Locate a Connect group</h2>
+
+@{
+    ViewBag.Title = "Find a Connect Group";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Find a Connect Group</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                <a>Connect groups</a>
+            </li>
+            <li class="active">
+                <strong>Connect groups</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Locate <small>a connect group near you </small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-6 b-r">
+                            <h3 class="m-t-none m-b">Please type in your full address</h3>
+                            <p>For example : 21, Milverton road, Ikoyi, Lagos</p>
+@using (Html.BeginForm("CellLocator", "Clusters", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+                           
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="searchAddress"> <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary">
+                                            Go!
+                                        </button>
+                                    </span>
+                                </div>
+                           
+
+                            <div id="ChooseOne">
+                                <table class="table">
+                                    <tr>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </th>
+
+
+                                    </tr>
+                                    @if (Model.Any()) { 
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.ActionLink(item.Address, "CellLocator", "Clusters", new { selectedaddress = item.Address }, new { @class = "postLink" })                                                    
+                                                    @*@Html.ActionLink(item.Address, "CellLocator", "Cluster", item, new { @class = "saveButton", selectedaddress = item.Address, onclick = "return false;" })*@
+
+                                                    @*@Html.ActionLink(item.Address, "CellLocator", new { selectedaddress = item.Address }, new AjaxOptions { HttpMethod = "POST"})*@
+                                                    @*<input type="submit" name="ActionType" value="Select"  />*@
+                                                    @*<input type="submit" value=@item.Address data-url="@Url.Action("CellLocator", item.Address, new { selectedaddress = item.Address })" class="col-md-8 btn btn-link" />*@
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </table>
+                            </div>
+
+                            <div id="SearchResults">
+                                
+                                <table class="table">
+                                    @if (Enumerable.Count(ViewBag.SearchResult) < 1 && ViewBag.SearchMode ==3)
+                                    {
+                                        <tr><td>There are no Connect groups within 2 kilometres of the address you entered. Please try again...</td></tr>
+                                    }
+                                    else { 
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th> Distance</th>
+                                        </tr>
+                                        foreach (CellLocationsViewModel item in ViewBag.SearchResult)
+                                        {
+                                            <tr>
+                                                <td> @item.CellName </td> 
+                                                <td> @item.Address </td> 
+                                               <td> @item.Distance </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </table>
+                            </div>
+}
+                        </div>
+                        <div class="col-sm-6">
+                                <div class="ibox ">
+                                    <div class="ibox-title">
+                                        <h5>Connect groups near you</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <p>
+                                            This is a custom 
+                                        </p>
+                                        <div class="google-map" id="locator-map"></div>
+                                    </div>
+                                </div>
+                            <h4>Not close enough?</h4>
+                            <p>You can contact :</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+
+    @Scripts.Render("https://maps.googleapis.com/maps/api/js?key=AIzaSyB3Wv8F-d7pEhOMuFjrfUQlQQYgxtSMtmA")
+
+    <script type="text/javascript">
+        // When the window has finished loading google map
+        //$(function () {
+        //    $("a.postLink").click(function (e) {
+        //        e.preventDefault();
+        //        $.post($(this).attr("href"), function (data) {
+        //            // got the result in data variable. do whatever you want now
+        //            //may be reload the page
+        //        });
+        //    });
+        //});
+        $("#postLink").click(function () {
+            var form = $(this).parents('form:first');
+            form.submit();
+        });
+        function init_map(map_canvas_id, lat, lng, zoomLevel) {
+            var myLatLng = new google.maps.LatLng(lat, lng);
+
+            var options = {
+                zoom: zoomLevel,
+                center: myLatLng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map_canvas = document.getElementById(map_canvas_id);
+
+            var map = new google.maps.Map(map_canvas, options);
+
+            
+        }
+        //google.maps.event.addDomListener(window, 'load', init);
+
+        init_map('locator-map', 6.427803, 3.468176, 8);
+       
+    </script>
+
+}
+
+

@@ -1,0 +1,122 @@
+﻿@model TECIS.Data.Models.SMSObject
+
+@{
+    ViewBag.Title = "Import Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Import Members</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Import Members</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-9">
+        <div class="ibox float-e-margins">
+
+            <div class="ibox-title">
+                <h5>Upload <small>Member data</small></h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">Config option 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div>
+                        @using (Html.BeginForm("ImportMembers", "Members", FormMethod.Post, new { enctype = "multipart/form-data", @class = "dropzone" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="dropzone-previews"></div>
+                            @*<button type="submit" name="action:ImportMembers" class="btn btn-primary pull-right">Submit the file</button>*@
+                        }
+
+                        <div>
+                            <div class="m text-right">
+                                <small>
+                                    Instructions: The Data to be uploaded must be in the first workbook. With the first row being the column headers in the following order:
+                                    </br>
+                                    DATE JOINED,	SURNAME,	FIRSTNAME,	OTHERNAMES,	ADDRESS,	PHONE NO,	EMAIL ,	BIRTHDAY,	AGE	,GENDER	,STATUS,	W. A	,OCCUPATION	,
+                                    OFFICE ADDRESS,	CLUSTER,	SERVICE UNIT,	NO OF CHILDREN,	CHILD NAME	,CHILD AGE	,BIRTHDAY,	CHILD NAME,	CHILD AGE	,BIRTHDAY,
+                                    CHILD NAME	,CHILD AGE,	BIRTHDAY,	CHILD NAME	,CHILD AGE,	BIRTHDAY.
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dropzone/dropZoneStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dropZone")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            Dropzone.options.myAwesomeDropzone = {
+
+                autoProcessQueue: false,
+                parallelUploads: 100,
+                maxFiles: 100,
+                paramName: "files",
+
+                // Dropzone settings
+                init: function () {
+                    var myDropzone = this;
+
+                    this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                    this.on("sendingmultiple", function () {
+                    });
+                    this.on("successmultiple", function (files, response) {
+                    });
+                    this.on("errormultiple", function (files, response) {
+                    });
+                }
+
+            }
+
+        });
+    </script>
+}

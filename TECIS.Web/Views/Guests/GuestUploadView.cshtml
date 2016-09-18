@@ -1,0 +1,188 @@
+﻿@model IEnumerable<TECIS.Data.Models.GuestUpload>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>GuestUpload</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>GuestUpload</h5>
+					<div class="ibox-tools">
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+					</div>
+                </div>
+                <div class="ibox-content">
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.agegroup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaritalStat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OtherNames)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NearestBStop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClusterArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OfficeAdress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flg_join)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flg_membershipinfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flg_moreinfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrayerComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.worshipdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timecaptured)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createdby)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Entrychannel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmsSent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SmsResponse)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.agegroup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaritalStat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OtherNames)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NearestBStop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClusterArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OfficeAdress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Occupation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flg_join)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flg_membershipinfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flg_moreinfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrayerComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.worshipdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timecaptured)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createdby)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Entrychannel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmsSent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SmsResponse)
+        </td>
+        <td>
+			@Html.ActionLink("Details", "Details", new { id=item.Id }, new { @class = "btn btn-primary btn-sm"})
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }, new { @class = "btn btn-white btn-sm"})
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-white btn-sm"})
+        </td>
+    </tr>
+}
+
+</table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+

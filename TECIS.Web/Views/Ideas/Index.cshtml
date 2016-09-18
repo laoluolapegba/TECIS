@@ -1,0 +1,151 @@
+﻿@model IEnumerable<TECIS.Data.Models.Idea>
+
+@{
+    ViewBag.Title = "Ideas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Welcome to the TECIS portal feedback forum. Have an idea or suggestion? We’d love to hear your thoughts.</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Ideas</a>
+            </li>
+            <li class="active">
+                <strong>Ideas List</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>How can we improve the this DMU and this portal?</h5>
+                    <div class="ibox-tools">                        
+                        @Html.ActionLink("Add new Idea", "Create", null, new { @class = "btn btn-primary btn-xs"})
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="m-b-lg">
+
+                        <div class="input-group">
+                            <input type="text" placeholder="Enter your idea..." class=" form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-white"> Search</button>
+                            </span>
+                        </div>
+                        <div class="m-t-md">
+
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-comments"></i> </button>
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-user"></i> </button>
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-list"></i> </button>
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-pencil"></i> </button>
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-print"></i> </button>
+                                <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-cogs"></i> </button>
+                            </div>
+
+                            <strong>Found @ViewBag.IdeaCount ideas.</strong>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover issue-tracker">
+                            <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string badgestyle = string.Empty;
+                                switch (item.Status)
+                                {
+                                    case 1:
+
+                                        badgestyle = "label";
+                                        break;
+                                    case 2:
+                                        badgestyle = "label label-info";
+                                        break;
+                                    case 3:
+                                        badgestyle = "label label-primary";
+                                        break;
+                                    case 4:
+                                        badgestyle = "label label-success";
+                                        break;
+                                    default:
+                                        badgestyle = "label label-danger";
+                                        break;
+                                }
+                                <tr>
+                                    <td>
+                                        <span class="@badgestyle">@item.ideastatus.Description</span>
+                                    </td>
+                                    <td class="issue-info">
+                                        <a href="#">
+                                           @Html.DisplayFor(modelItem => item.Title)
+                                        </a>
+
+                                        <small>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </small>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Createdby)
+                                    </td>
+                                    <td>
+                                       @Html.DisplayFor(modelItem => item.CreatedDate)
+                                    </td>
+                                    <td>
+                                        <span class="pie">0.52,1.041</span>
+                                        2d
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-white btn-xs"> Tag</button>
+                                        <button class="btn btn-white btn-xs"> Mag</button>
+                                        <button class="btn btn-white btn-xs"> Rag</button>
+                                    </td>
+                                </tr>
+                            }
+                                </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/peity")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("span.pie").peity("pie", {
+                fill: ['#1ab394', '#d7d7d7', '#ffffff']
+            })
+
+        });
+    </script>
+}
+
+
+
+

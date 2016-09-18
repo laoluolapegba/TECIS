@@ -1,0 +1,183 @@
+﻿
+@using TECIS.Web.Helpers.CrossCutting.Security
+@using Microsoft.AspNet.Identity
+@using TECIS.Web.Models;
+@using TECIS.Web.Helpers.UI;
+@using TECIS.Data.ViewModels;
+@using TECIS.Data.Models;
+@using System.Linq
+
+@{
+    List<NotificationViewModel> Notifications = ViewBag.Notifications;
+    List<NotificationViewModel> Messages = ViewBag.Messages;
+
+<div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="">
+                <div class="form-group">
+                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+        @if (Request.IsAuthenticated)
+        {
+            
+            using (Html.BeginForm("LogOut", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <a href="@Url.Action("Index", "Ideas")">
+                            <i class="fa fa-comments-o"></i>
+                            <span class="text">Suggest an Idea</span>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message">TEC Information System.</span>
+                    </li>
+                    @if (ViewBag.Messages != null)
+                        {
+                            int Msgcount = Enumerable.Count(ViewBag.Messages);
+                            int Notecount = Enumerable.Count(ViewBag.Notifications);
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i>  <span class="label label-warning">@Msgcount</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-messages">
+                                @foreach (var mp in Messages)
+                                {
+                                    if (mp.IsDismissed)
+                                    {
+                                        <li>
+                                            <div class="dropdown-messages-box">
+                                                <a href="#" class="pull-left">
+                                                    <img alt="image" class="img-circle" src="~/Content/Avatar/@(mp.SenderId).png">
+                                                </a>
+                                                <div class="media-body">
+                                                    <small class="pull-right">46h ago</small>
+                                                    <strong>@mp.SenderId</strong> @mp.Title <strong>Monica Smith</strong>. <br>
+                                                    <small class="text-muted">@DateHelper.TimeElapsed(@mp.Timestamp)</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <div class="dropdown-messages-box">
+                                                <a href="#" class="pull-left">
+                                                    <img alt="image" class="img-circle" src="~/Content/Avatar/@(mp.SenderId).png">
+                                                </a>
+                                                <div class="media-body">
+                                                    <small class="pull-right">46h ago</small>
+                                                    <strong>@mp.SenderId</strong> @mp.Title <strong>Monica Smith</strong>. <br>
+                                                    <small class="text-muted">@DateHelper.TimeElapsed(@mp.Timestamp)</small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                    }
+                                }
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="@Url.Action("Messages", "Manage")">
+                                            <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                        </a>
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i>  <span class="label label-primary">@Notecount</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                            @foreach (var mp in Notifications.Where(p => p.NotificationType == (int)NotificationType.General))
+                            {
+                                string badgestyle = string.Empty;
+
+                                switch (mp.NoteBadge)
+                                {
+                                    case 1:
+
+                                        badgestyle = "fa fa-shopping-cart red-font";
+                                        break;
+                                    case 2:
+
+                                        badgestyle = "fa fa-unlock yellow-font";
+                                        break;
+
+                                    case 3:
+
+                                        badgestyle = "fa fa-user green-font";
+                                        break;
+                                    case 4:
+
+                                        badgestyle = "fa fa-warning red-font";
+                                        break;
+                                    default:
+                                        badgestyle = "fa fa-comment green-font";
+                                        break;
+                                }
+                                <li>
+                                    <a href="#">
+                                        <div>
+                                            <i class="@badgestyle"></i> <span class="text">@mp.Title</span>
+                                            <span class="pull-right text-muted small">@DateHelper.TimeElapsed(@mp.Timestamp)</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>   
+                            }  
+                                <li>
+                                    <div class="text-center link-block">
+                                        <a href="@Url.Action("Notification", "Manage")">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i> 
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    <li>
+                        @*<a href="@Url.Action("Login", "Pages")">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>*@
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="fa fa-power-off"></i>
+                            <span class="text">Logout</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="right-sidebar-toggle">
+                            <i class="fa fa-tasks"></i>
+                        </a>
+                    </li>
+                </ul>
+            }
+        }
+        else
+        {
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to TEC Information System.</span>
+                </li>
+                <li>
+                    <a href="@Url.Action("Login", "Account")">
+                        <i class="fa fa-sign-in"></i> Log in
+                    </a>
+                </li>
+            </ul>
+
+        }
+
+</nav>
+</div>
+    
+}

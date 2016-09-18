@@ -1,0 +1,108 @@
+﻿@model TECIS.Web.Models.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Edit</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Edit</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Edit User</h5>
+                </div>
+                <div class="ibox-content">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true)
+                            @Html.HiddenFor(model => model.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                               @Html.LabelFor(model => model.Firstname, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Firstname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Firstname)
+                            </div>
+                            </div>
+                            <div class="form-group">
+                               @Html.LabelFor(model => model.Lastname, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Lastname, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Lastname)
+                            </div>
+                            </div>
+                            <div class="form-group">
+                               @Html.LabelFor(model => model.EmailConfirmed, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(m => m.EmailConfirmed, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.EmailConfirmed)
+                            </div>
+                            </div>
+                            <div class="form-group">
+                               @Html.LabelFor(model => model.AdminConfirmed, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(m => m.AdminConfirmed, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.AdminConfirmed)
+                            </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                                <span class=" col-md-10">
+                                    @foreach (var item in Model.RolesList)
+                                    {
+                                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                                        @Html.Label(item.Value, new { @class = "control-label" })
+                                    }
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                    @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

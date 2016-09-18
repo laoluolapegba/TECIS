@@ -1,0 +1,131 @@
+﻿@model TECIS.Data.Models.TecSchoolAttendance
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Add Membership School Attendance</h4>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Create Attendance</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+
+           <div class="form-group">
+                @Html.LabelFor(model => model.Surname, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Surname)
+                    @Html.ValidationMessageFor(model => model.Surname)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OtherNames, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.OtherNames)
+                    @Html.ValidationMessageFor(model => model.OtherNames)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.PhoneNumber)
+                    @Html.ValidationMessageFor(model => model.PhoneNumber)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailAddress, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.EmailAddress)
+                    @Html.ValidationMessageFor(model => model.EmailAddress)
+                </div>
+            </div>
+              <div class="form-group">
+                @Html.LabelFor(model => model.Gender, new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Gender)
+                    @Html.ValidationMessageFor(model => model.Gender)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.agegroup, "Age Group", new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("agegroup", String.Empty)
+                    @Html.ValidationMessageFor(model => model.agegroup)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaritalStat, "Marital Status", new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.DropDownList("MaritalStat", String.Empty)
+                    @Html.ValidationMessageFor(model => model.MaritalStat)
+                </div>
+            </div>
+
+            <form role="form" class="form-inline">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.membership_class)                
+                    @Html.EditorFor(model => model.membership_class)
+                    @Html.ValidationMessageFor(model => model.membership_class)
+                     @Html.LabelFor(model => model.membership_class_date)
+                    @Html.Kendo().DatePickerFor(model => model.membership_class_date)
+                     @Html.ValidationMessageFor(model => model.membership_class_date)
+                </div>
+            </form>
+            
+            <form role="form" class="form-inline">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.development_class)                
+                    @Html.EditorFor(model => model.development_class)
+                    @Html.ValidationMessageFor(model => model.development_class)
+                     @Html.LabelFor(model => model.development_class_date)
+                    @Html.Kendo().DatePickerFor(model => model.development_class_date)
+                     @Html.ValidationMessageFor(model => model.development_class_date)
+                </div>
+            </form>
+
+            <form role="form" class="form-inline">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.maturity_class)                
+                    @Html.EditorFor(model => model.maturity_class)
+                    @Html.ValidationMessageFor(model => model.maturity_class)
+                     @Html.LabelFor(model => model.maturity_class_date)
+                    @Html.Kendo().DatePickerFor(model => model.maturity_class_date)
+                     @Html.ValidationMessageFor(model => model.maturity_class_date)
+                </div>
+            </form>
+
+          
+            
+        </div>
+        </div>
+    <div class="modal-footer">
+        <div class="col-md-offset-2 col-md-8">
+            <button class="btn" data-dismiss="modal">Cancel</button>
+            <input type="submit" value="Create" class="btn btn-primary" />
+            
+        </div>
+    </div>
+}
+
+    </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ 

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="TEC Information System">
+    <meta name="author" content="Data Management Unit">
+    <title>@ViewBag.Title - TECIS</title>
+
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <!-- Add local styles, mostly for plugins css file -->
+    @if (IsSectionDefined("Styles"))
+        {@RenderSection("Styles", required: false)}
+     
+    <!-- Add jQuery Style direct - used for jQGrid plugin -->
+    <link href="@Url.Content("~/Scripts/plugins/jquery-ui/jquery-ui.css")" rel="stylesheet" type="text/css" />
+
+    <!-- Primary Inspinia style -->     
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+    @Styles.Render("~/Content/kendo/css")
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
+    <!-- Fav and touch icons -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/ico/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/ico/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    @RenderSection("HeadContent", false)
+	<link href="@Url.Content("~/Content/kendo/2016.1.112/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2016.1.112/kendo.mobile.all.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2016.1.112/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2016.1.112/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
+	<link href="@Url.Content("~/Content/kendo/2016.1.112/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+	<script src="@Url.Content("~/Scripts/kendo/2016.1.112/jquery.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2016.1.112/jszip.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2016.1.112/kendo.all.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/kendo/2016.1.112/kendo.aspnetmvc.min.js")"></script>
+
+    <script>
+        var culture = kendo.culture();
+        culture.numberFormat.currency.symbol = "₦";
+    </script>
+</head>
+<body>
+    @RenderSection("topLevel", required: false)
+    <!-- Skin configuration box -->
+    <!-- @Html.Partial("_SkinConfig") -->
+
+    <!-- Wrapper-->
+    <!-- PageClass give you ability to specify custom style for specific view based on action -->
+    <div id="wrapper" class="@Html.PageClass()">
+
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Top Navbar -->
+            @Html.Partial("_TopNavbar")
+
+            <!-- Main view  -->
+            @{ Html.RenderPartial("_Alerts"); }
+            @RenderBody()
+
+            <!-- Footer -->
+            @Html.Partial("_Footer")
+
+        </div>
+        <!-- End page wrapper-->
+
+        <!-- Right Sidebar -->
+        @Html.Partial("_RightSidebar")
+
+    </div>
+    <!-- End wrapper-->
+
+    <!-- Section for main scripts render -->
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+
+    <!-- Skin config script - only for demo purpose-->
+    @Scripts.Render("~/bundles/skinConfig")
+
+    <!-- Handler for local scripts -->
+    @RenderSection("scripts", required: false)
+</body>
+</html>

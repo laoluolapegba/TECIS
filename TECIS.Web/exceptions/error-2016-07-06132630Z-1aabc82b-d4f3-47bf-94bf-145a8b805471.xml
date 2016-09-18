@@ -1,0 +1,177 @@
+﻿<error errorId="1aabc82b-d4f3-47bf-94bf-145a8b805471" host="BLUECHIP-PC" type="System.Web.HttpException" message="The controller for path '/Guests/Edit/2580' was not found or does not implement IController." source="System.Web.Mvc" detail="System.Web.HttpException (0x80004005): Execution of the child request failed. Please examine the InnerException for more information. ---&gt; System.Web.HttpException (0x80004005): The controller for path '/Guests/Edit/2580' was not found or does not implement IController.&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)&#xD;&#xA;   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController&amp; controller, IControllerFactory&amp; factory)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)&#xD;&#xA;   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.&lt;&gt;c__DisplayClass7.&lt;BeginProcessRequest&gt;b__6()&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerWrapper.Wrap[TResult](Func`1 func)&#xD;&#xA;   at System.Web.Mvc.HttpHandlerUtil.ServerExecuteHttpHandlerAsyncWrapper.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)&#xD;&#xA;   at System.Web.HttpServerUtility.ExecuteInternal(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage, VirtualPath path, VirtualPath filePath, String physPath, Exception error, String queryStringOverride)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm, Boolean setPreviousPage)&#xD;&#xA;   at System.Web.HttpServerUtility.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.HttpServerUtilityWrapper.Execute(IHttpHandler handler, TextWriter writer, Boolean preserveForm)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.ActionHelper(HtmlHelper htmlHelper, String actionName, String controllerName, RouteValueDictionary routeValues, TextWriter textWriter)&#xD;&#xA;   at System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper htmlHelper, String actionName, String controllerName, Object routeValues)&#xD;&#xA;   at ASP._Page_Views_Guests_Edit_cshtml.Execute() in f:\LaoluOlapegba\MyMachine\MyDotnet\TECIS\TECIS.Web\Views\Guests\Edit.cshtml:line 261&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.StartPage.RunPage()&#xD;&#xA;   at System.Web.WebPages.StartPage.ExecutePageHierarchy()&#xD;&#xA;   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)&#xD;&#xA;   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)&#xD;&#xA;   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)&#xD;&#xA;   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;&gt;c__DisplayClass2b.&lt;BeginInvokeAction&gt;b__1c()&#xD;&#xA;   at System.Web.Mvc.Async.AsyncControllerActionInvoker.&lt;&gt;c__DisplayClass21.&lt;BeginInvokeAction&gt;b__1e(IAsyncResult asyncResult)" user="laoluolapegba@gmail.com" time="2016-07-06T13:26:30.8219763Z" statusCode="500">
+  <serverVariables>
+    <item name="ALL_HTTP">
+      <value string="HTTP_CACHE_CONTROL:max-age=0&#xD;&#xA;HTTP_CONNECTION:keep-alive&#xD;&#xA;HTTP_ACCEPT:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;HTTP_ACCEPT_ENCODING:gzip, deflate, sdch, br&#xD;&#xA;HTTP_ACCEPT_LANGUAGE:en-US,en;q=0.8&#xD;&#xA;HTTP_COOKIE:ASP.NET_SessionId=wug1gyzlxzig11aowar4ahkv; FrontAccounting=6piup5d94dq4kvrlpntqm50730; __RequestVerificationToken_L0RlbW9DYXNo0=sHL5e6R16hAIuiYMCZvLJnZkcKhHJ4qrlmMK0RCnNwItrzGGYX8LYT5ujgMOOkrrVjvKfjrEZHvhc4XN512G1a2f1YbnrRzUJp5n_ksP67M1; __RequestVerificationToken=lU2ROPd96m1iSYMy_jbr-dqclLHmSCMjEm1Y2ki4KEbop0BpZx9fzSr8A4d7mn10CafocynRtx-JcQMgtU4xTYEjfNxTlusTpQaK4Nl7yfM1; .AspNet.ApplicationCookie=VXpHUu9qhemYnw7HyoNzxWfpp0--1EgN6MSuC8M2atepJ5hPKlRnRyMAyjg25JSGDqs9998Mldzlt9lkx_kNHvE7Kw5xAgHCPNeL8tNPWJr9J6fH-dYnhTUZFYVgOXxdYVHQJidfM06nP1O2TGWOEJhEhB2N5tRgpFfviyKfSicyGGxtQ9QvOY7-p3eTup_UmC12JKj2EN0BAXUNBleeiNjZL80_Ip67cgYXpW2Wq99Hjd9fAD3HsnJ7ZvDVKneNbvNoLjzIxwkPF2Onpto-28CtykBC1atEICIVW5EsJI_-CkxKf27q6eiu8idvfQTdcHin_KpLID8N6x_mKGbc14hGYgdXv_X7Qn8wyn8eG1IexrDPXx4g7AqfiyYqp7OcQ-SraZ7_bP_Db_JOzFywouN_nZUru8gu0BZjin0ryTDwcVF7Rk2cIDfND7Vip0OoPOPzIefILtxvn6vfXBcLNsjlNBrDsdnP_Jwo_DYYp7iPNPo4_mWDElQPKOuNiuihME4NXgrd1cSUSikDJJSdKSN0_cfPmMTfwnPm23guF_E&#xD;&#xA;HTTP_HOST:localhost:44300&#xD;&#xA;HTTP_USER_AGENT:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36&#xD;&#xA;HTTP_UPGRADE_INSECURE_REQUESTS:1&#xD;&#xA;" />
+    </item>
+    <item name="ALL_RAW">
+      <value string="Cache-Control: max-age=0&#xD;&#xA;Connection: keep-alive&#xD;&#xA;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8&#xD;&#xA;Accept-Encoding: gzip, deflate, sdch, br&#xD;&#xA;Accept-Language: en-US,en;q=0.8&#xD;&#xA;Cookie: ASP.NET_SessionId=wug1gyzlxzig11aowar4ahkv; FrontAccounting=6piup5d94dq4kvrlpntqm50730; __RequestVerificationToken_L0RlbW9DYXNo0=sHL5e6R16hAIuiYMCZvLJnZkcKhHJ4qrlmMK0RCnNwItrzGGYX8LYT5ujgMOOkrrVjvKfjrEZHvhc4XN512G1a2f1YbnrRzUJp5n_ksP67M1; __RequestVerificationToken=lU2ROPd96m1iSYMy_jbr-dqclLHmSCMjEm1Y2ki4KEbop0BpZx9fzSr8A4d7mn10CafocynRtx-JcQMgtU4xTYEjfNxTlusTpQaK4Nl7yfM1; .AspNet.ApplicationCookie=VXpHUu9qhemYnw7HyoNzxWfpp0--1EgN6MSuC8M2atepJ5hPKlRnRyMAyjg25JSGDqs9998Mldzlt9lkx_kNHvE7Kw5xAgHCPNeL8tNPWJr9J6fH-dYnhTUZFYVgOXxdYVHQJidfM06nP1O2TGWOEJhEhB2N5tRgpFfviyKfSicyGGxtQ9QvOY7-p3eTup_UmC12JKj2EN0BAXUNBleeiNjZL80_Ip67cgYXpW2Wq99Hjd9fAD3HsnJ7ZvDVKneNbvNoLjzIxwkPF2Onpto-28CtykBC1atEICIVW5EsJI_-CkxKf27q6eiu8idvfQTdcHin_KpLID8N6x_mKGbc14hGYgdXv_X7Qn8wyn8eG1IexrDPXx4g7AqfiyYqp7OcQ-SraZ7_bP_Db_JOzFywouN_nZUru8gu0BZjin0ryTDwcVF7Rk2cIDfND7Vip0OoPOPzIefILtxvn6vfXBcLNsjlNBrDsdnP_Jwo_DYYp7iPNPo4_mWDElQPKOuNiuihME4NXgrd1cSUSikDJJSdKSN0_cfPmMTfwnPm23guF_E&#xD;&#xA;Host: localhost:44300&#xD;&#xA;User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36&#xD;&#xA;Upgrade-Insecure-Requests: 1&#xD;&#xA;" />
+    </item>
+    <item name="APPL_MD_PATH">
+      <value string="/LM/W3SVC/2/ROOT" />
+    </item>
+    <item name="APPL_PHYSICAL_PATH">
+      <value string="F:\LaoluOlapegba\MyMachine\MyDotnet\TECIS\TECIS.Web\" />
+    </item>
+    <item name="AUTH_TYPE">
+      <value string="ApplicationCookie" />
+    </item>
+    <item name="AUTH_USER">
+      <value string="laoluolapegba@gmail.com" />
+    </item>
+    <item name="AUTH_PASSWORD">
+      <value string="" />
+    </item>
+    <item name="LOGON_USER">
+      <value string="" />
+    </item>
+    <item name="REMOTE_USER">
+      <value string="laoluolapegba@gmail.com" />
+    </item>
+    <item name="CERT_COOKIE">
+      <value string="" />
+    </item>
+    <item name="CERT_FLAGS">
+      <value string="" />
+    </item>
+    <item name="CERT_ISSUER">
+      <value string="" />
+    </item>
+    <item name="CERT_KEYSIZE">
+      <value string="256" />
+    </item>
+    <item name="CERT_SECRETKEYSIZE">
+      <value string="1024" />
+    </item>
+    <item name="CERT_SERIALNUMBER">
+      <value string="" />
+    </item>
+    <item name="CERT_SERVER_ISSUER">
+      <value string="CN=localhost" />
+    </item>
+    <item name="CERT_SERVER_SUBJECT">
+      <value string="CN=localhost" />
+    </item>
+    <item name="CERT_SUBJECT">
+      <value string="" />
+    </item>
+    <item name="CONTENT_LENGTH">
+      <value string="0" />
+    </item>
+    <item name="CONTENT_TYPE">
+      <value string="" />
+    </item>
+    <item name="GATEWAY_INTERFACE">
+      <value string="CGI/1.1" />
+    </item>
+    <item name="HTTPS">
+      <value string="on" />
+    </item>
+    <item name="HTTPS_KEYSIZE">
+      <value string="256" />
+    </item>
+    <item name="HTTPS_SECRETKEYSIZE">
+      <value string="1024" />
+    </item>
+    <item name="HTTPS_SERVER_ISSUER">
+      <value string="CN=localhost" />
+    </item>
+    <item name="HTTPS_SERVER_SUBJECT">
+      <value string="CN=localhost" />
+    </item>
+    <item name="INSTANCE_ID">
+      <value string="2" />
+    </item>
+    <item name="INSTANCE_META_PATH">
+      <value string="/LM/W3SVC/2" />
+    </item>
+    <item name="LOCAL_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="PATH_INFO">
+      <value string="/Guests/Edit/2580" />
+    </item>
+    <item name="PATH_TRANSLATED">
+      <value string="F:\LaoluOlapegba\MyMachine\MyDotnet\TECIS\TECIS.Web\Guests\Edit\2580" />
+    </item>
+    <item name="QUERY_STRING">
+      <value string="" />
+    </item>
+    <item name="REMOTE_ADDR">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_HOST">
+      <value string="::1" />
+    </item>
+    <item name="REMOTE_PORT">
+      <value string="13461" />
+    </item>
+    <item name="REQUEST_METHOD">
+      <value string="GET" />
+    </item>
+    <item name="SCRIPT_NAME">
+      <value string="/Guests/Edit/2580" />
+    </item>
+    <item name="SERVER_NAME">
+      <value string="localhost" />
+    </item>
+    <item name="SERVER_PORT">
+      <value string="44300" />
+    </item>
+    <item name="SERVER_PORT_SECURE">
+      <value string="1" />
+    </item>
+    <item name="SERVER_PROTOCOL">
+      <value string="HTTP/1.1" />
+    </item>
+    <item name="SERVER_SOFTWARE">
+      <value string="Microsoft-IIS/10.0" />
+    </item>
+    <item name="URL">
+      <value string="/Guests/Edit/2580" />
+    </item>
+    <item name="HTTP_CACHE_CONTROL">
+      <value string="max-age=0" />
+    </item>
+    <item name="HTTP_CONNECTION">
+      <value string="keep-alive" />
+    </item>
+    <item name="HTTP_ACCEPT">
+      <value string="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" />
+    </item>
+    <item name="HTTP_ACCEPT_ENCODING">
+      <value string="gzip, deflate, sdch, br" />
+    </item>
+    <item name="HTTP_ACCEPT_LANGUAGE">
+      <value string="en-US,en;q=0.8" />
+    </item>
+    <item name="HTTP_COOKIE">
+      <value string="ASP.NET_SessionId=wug1gyzlxzig11aowar4ahkv; FrontAccounting=6piup5d94dq4kvrlpntqm50730; __RequestVerificationToken_L0RlbW9DYXNo0=sHL5e6R16hAIuiYMCZvLJnZkcKhHJ4qrlmMK0RCnNwItrzGGYX8LYT5ujgMOOkrrVjvKfjrEZHvhc4XN512G1a2f1YbnrRzUJp5n_ksP67M1; __RequestVerificationToken=lU2ROPd96m1iSYMy_jbr-dqclLHmSCMjEm1Y2ki4KEbop0BpZx9fzSr8A4d7mn10CafocynRtx-JcQMgtU4xTYEjfNxTlusTpQaK4Nl7yfM1; .AspNet.ApplicationCookie=VXpHUu9qhemYnw7HyoNzxWfpp0--1EgN6MSuC8M2atepJ5hPKlRnRyMAyjg25JSGDqs9998Mldzlt9lkx_kNHvE7Kw5xAgHCPNeL8tNPWJr9J6fH-dYnhTUZFYVgOXxdYVHQJidfM06nP1O2TGWOEJhEhB2N5tRgpFfviyKfSicyGGxtQ9QvOY7-p3eTup_UmC12JKj2EN0BAXUNBleeiNjZL80_Ip67cgYXpW2Wq99Hjd9fAD3HsnJ7ZvDVKneNbvNoLjzIxwkPF2Onpto-28CtykBC1atEICIVW5EsJI_-CkxKf27q6eiu8idvfQTdcHin_KpLID8N6x_mKGbc14hGYgdXv_X7Qn8wyn8eG1IexrDPXx4g7AqfiyYqp7OcQ-SraZ7_bP_Db_JOzFywouN_nZUru8gu0BZjin0ryTDwcVF7Rk2cIDfND7Vip0OoPOPzIefILtxvn6vfXBcLNsjlNBrDsdnP_Jwo_DYYp7iPNPo4_mWDElQPKOuNiuihME4NXgrd1cSUSikDJJSdKSN0_cfPmMTfwnPm23guF_E" />
+    </item>
+    <item name="HTTP_HOST">
+      <value string="localhost:44300" />
+    </item>
+    <item name="HTTP_USER_AGENT">
+      <value string="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" />
+    </item>
+    <item name="HTTP_UPGRADE_INSECURE_REQUESTS">
+      <value string="1" />
+    </item>
+  </serverVariables>
+  <cookies>
+    <item name="ASP.NET_SessionId">
+      <value string="wug1gyzlxzig11aowar4ahkv" />
+    </item>
+    <item name="FrontAccounting">
+      <value string="6piup5d94dq4kvrlpntqm50730" />
+    </item>
+    <item name="__RequestVerificationToken_L0RlbW9DYXNo0">
+      <value string="sHL5e6R16hAIuiYMCZvLJnZkcKhHJ4qrlmMK0RCnNwItrzGGYX8LYT5ujgMOOkrrVjvKfjrEZHvhc4XN512G1a2f1YbnrRzUJp5n_ksP67M1" />
+    </item>
+    <item name="__RequestVerificationToken">
+      <value string="lU2ROPd96m1iSYMy_jbr-dqclLHmSCMjEm1Y2ki4KEbop0BpZx9fzSr8A4d7mn10CafocynRtx-JcQMgtU4xTYEjfNxTlusTpQaK4Nl7yfM1" />
+    </item>
+    <item name=".AspNet.ApplicationCookie">
+      <value string="VXpHUu9qhemYnw7HyoNzxWfpp0--1EgN6MSuC8M2atepJ5hPKlRnRyMAyjg25JSGDqs9998Mldzlt9lkx_kNHvE7Kw5xAgHCPNeL8tNPWJr9J6fH-dYnhTUZFYVgOXxdYVHQJidfM06nP1O2TGWOEJhEhB2N5tRgpFfviyKfSicyGGxtQ9QvOY7-p3eTup_UmC12JKj2EN0BAXUNBleeiNjZL80_Ip67cgYXpW2Wq99Hjd9fAD3HsnJ7ZvDVKneNbvNoLjzIxwkPF2Onpto-28CtykBC1atEICIVW5EsJI_-CkxKf27q6eiu8idvfQTdcHin_KpLID8N6x_mKGbc14hGYgdXv_X7Qn8wyn8eG1IexrDPXx4g7AqfiyYqp7OcQ-SraZ7_bP_Db_JOzFywouN_nZUru8gu0BZjin0ryTDwcVF7Rk2cIDfND7Vip0OoPOPzIefILtxvn6vfXBcLNsjlNBrDsdnP_Jwo_DYYp7iPNPo4_mWDElQPKOuNiuihME4NXgrd1cSUSikDJJSdKSN0_cfPmMTfwnPm23guF_E" />
+    </item>
+  </cookies>
+</error>

@@ -1,0 +1,32 @@
+﻿@using TECIS.Data.Models;
+@model IEnumerable<TECIS.Data.Models.Notification>
+@foreach (var notification in Model)
+{
+    string alertlevel = string.Empty;
+    switch (notification.priority)
+    {
+        case 1:
+            alertlevel = "alert alert-danger alert-dismissable";
+            break;
+        case 2:
+            alertlevel = "alert alert-warning alert-dismissable";
+            break;
+
+        case 3:
+            alertlevel = "alert alert-info alert-dismissable";
+            break;
+        case 4:
+            alertlevel = "alert alert-success alert-dismissable";
+            break;
+        default:
+            alertlevel = "alert alert-success alert-dismissable";
+            break;
+
+    }
+    <div class="@alertlevel">
+        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+        @notification.Title. <a class="alert-link" href="#">Action Link</a>.
+    </div>
+
+
+}

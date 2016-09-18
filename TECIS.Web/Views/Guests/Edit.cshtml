@@ -1,0 +1,268 @@
+﻿@model TECIS.Data.Models.Guest
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Edit</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Edit</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+			@Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Edit Guest</h5>
+                </div>
+                <div class="ibox-content">
+
+				@using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+    
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.worshipdate)
+                        @Html.HiddenFor(model => model.timecaptured)
+                        @Html.HiddenFor(model => model.servicetype)
+                        @Html.HiddenFor(model => model.createdby)
+                        @Html.HiddenFor(model => model.SmsResponse)
+                        @Html.HiddenFor(model => model.SmsSent)
+                        <div class="form-group">
+                                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="editor-field">
+                                        @Html.RadioButtonFor(m => m.Gender, "Male") Male
+                                        @Html.RadioButtonFor(m => m.Gender, "Female") Female
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.agegroup, "AgeGroup", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    15-20 @Html.RadioButtonFor(m => m.agegroup, "1")
+                                    21-25 @Html.RadioButtonFor(m => m.agegroup, "2")
+                                    26-30 @Html.RadioButtonFor(m => m.agegroup, "3")
+
+                                    31-35 @Html.RadioButtonFor(m => m.agegroup, "4")
+                                    36-40 @Html.RadioButtonFor(m => m.agegroup, "5")
+                                    41-45 @Html.RadioButtonFor(m => m.agegroup, "6")
+                                    46-50 @Html.RadioButtonFor(m => m.agegroup, "7")
+                                    50 & Above @Html.RadioButtonFor(m => m.agegroup, "8")
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MaritalStat, "MaritalStatus", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                    Married @Html.RadioButtonFor(m => m.MaritalStat, "1")
+                                    Single @Html.RadioButtonFor(m => m.MaritalStat, "2")
+                                    Divorce @Html.RadioButtonFor(m => m.MaritalStat, "3")
+                                    Separated @Html.RadioButtonFor(m => m.MaritalStat, "4")
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OtherNames, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.OtherNames, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OtherNames, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HomeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.HomeAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HomeAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ClusterArea, "ClusterArea", htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<div class="col-md-6">
+                                    @Html.DropDownList("ClusterArea", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClusterArea, "", new { @class = "text-danger" })
+                                </div>*@
+                                  @(Html.Kendo().ComboBox()
+                                    .Name("ClusterArea")
+                                    .DataTextField("ClusterName")
+                                    .DataValueField("ClusterId")
+                                  .HtmlAttributes(new { style = "width:50%;" })
+                                  .Filter("contains")
+                                  .AutoBind(false)
+                                  .MinLength(3)
+                                  .DataSource(source => {
+                                      source.Read(read =>
+                                      {
+                                          read.Action("GetClusters", "Clusters");
+                                      })
+                                      .ServerFiltering(true);
+                                  })
+                            )
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.NearestBStop, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.NearestBStop, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NearestBStop, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control",  @title = "separate multiple numbers with a comma" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmailAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    
+
+                                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Occupation, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+
+                                    @Html.EditorFor(model => model.Occupation, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Occupation, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OfficeAdress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-6">
+                                    @Html.EditorFor(model => model.OfficeAdress, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.OfficeAdress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Consider Joining?", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.RadioButtonFor(m => m.flg_join, "1") Yes
+                                    @Html.RadioButtonFor(m => m.flg_join, "2") No
+                                    @Html.RadioButtonFor(m => m.flg_join, "3") Maybe
+                                    @Html.ValidationMessageFor(model => model.flg_join, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Receive Membership Info?", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.RadioButtonFor(m => m.flg_membershipinfo, "1") Yes
+                                    @Html.RadioButtonFor(m => m.flg_membershipinfo, "2") No
+                                    @Html.ValidationMessageFor(model => model.flg_membershipinfo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Want to know more?", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.RadioButtonFor(m => m.flg_moreinfo, "1") Yes
+                                    @Html.RadioButtonFor(m => m.flg_moreinfo, "2") No
+                                    @Html.ValidationMessageFor(model => model.flg_moreinfo, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("How did you hear about the Church", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "A Friend") A Friend
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Invitation Cards/Flyers") Invitation Card/Flyers
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Radio") Radio
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Social Media") Social Media
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Press Advert") Press Advert
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Our Website") Our Website
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Billboard") Billboard
+                                    @Html.RadioButtonFor(m => m.Entrychannel, "Others : ") Others. (Pls. specify)
+                                    @Html.TextBoxFor(m => m.EntrychannelOther, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EntrychannelOther, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.Label("Prayer/Service Comments", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.PrayerComments, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PrayerComments, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-primary" />
+				                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white"})
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-10" >
+        @{ Html.RenderAction("List", "GuestContact", new { id = Model.Id }); }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+}

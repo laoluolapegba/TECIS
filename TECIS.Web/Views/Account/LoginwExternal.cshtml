@@ -1,0 +1,108 @@
+﻿@using TECIS.Web.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TECIS | Login</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+    <!-- Fav and touch icons -->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/ico/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Content/ico/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/ico/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/ico/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/ico/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/ico/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/ico/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/ico/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/ico/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/ico/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Content/ico/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/ico/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/ico/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/Content/ico/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="gray-bg">
+
+    <div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="middle-box text-center loginscreen  animated fadeInDown">
+                    <div>
+
+                        <h1 class="logo-name">TECIS+</h1>
+
+                    </div>
+                    <h3>Welcome to TECIS</h3>
+                    <p>
+                        Information System of The Elevation Church.
+                    </p>
+                    <p>Login in. To see it in action.</p>
+
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4>Use a local account to log in.</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Username" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                           
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        </div>
+                        
+                        @*<div class="form-group">
+                            
+                                <div class="checkbox">
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                            
+                        </div>*@
+                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                        <a href="@Url.Action("ForgotPassword", "Account")">
+                            <small class="text">Forgot your password?</small>
+                        </a>
+
+                        <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                        <a class="btn btn-sm btn-white btn-block" href="@Url.Action("Register", "Account")">Create an account</a>
+
+                    }
+                    <p class="m-t"> <small>The Elevation Church &copy; @DateTime.Now.Year</small> </p>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>
+        </div>
+     </div>
+</body>
+
+</html>
+
+

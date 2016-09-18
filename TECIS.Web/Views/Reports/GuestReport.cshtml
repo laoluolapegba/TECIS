@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "GuestReport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GuestReport</h2>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Send Guest Report</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                <a>Report</a>
+            </li>
+            <li class="active">
+                <strong>Guest Report</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>... </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        
+				@using (Html.BeginForm("GuestReport","Reports")) 
+                {
+                    @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-sm-5 m-b-xs">
+                                <select class="input-sm form-control input-s-sm inline" id="report-option" name="report-option">
+                                    <option value="0">Connect group Leaders</option>
+                                    <option value="1">Section Leaders</option>
+                                    <option value="2">Area Leaders</option>
+                                    <option value="3">Zonal Leaders</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 m-b-xs" id="dateFilter">
+                                @(Html.Kendo().DatePicker().Name("ServiceDate").Value(DateTime.Today))
+                                
+                                <button class="btn btn-primary " type="submit"><i class="fa fa-check"></i>&nbsp;Send Report</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                             
+                                <div data-toggle="buttons" class="btn-group">
+                                    <label class="btn btn-sm btn-white"> <input type="radio" id="option1" name="options"> Day </label>
+                                    <label class="btn btn-sm btn-white active"> <input type="radio" id="option2" name="options"> Week </label>
+                                    <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
+                                </div>
+                            </div>
+                }
+                        <div id="target">
+                             @*@{
+                            Html.RenderPartial("ReportStatusPartial", ViewData.Model);
+                        }*@
+                        </div>
+                       
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @section Styles {
+        @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+@Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/plugins/peity")
+        @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('.i-checks').iCheck({
+                    checkboxClass: 'icheckbox_square-green',
+                    radioClass: 'iradio_square-green',
+                });
+
+                $("span.pie").peity("pie", {
+                    fill: ['#1ab394', '#d7d7d7', '#ffffff']
+                })
+
+                $(".line").peity("line", {
+                    fill: '#1ab394',
+                    stroke: '#169c81',
+                })
+
+                $(".bar").peity("bar", {
+                    fill: ["#1ab394", "#d7d7d7"]
+                })
+
+                $(".bar_dashboard").peity("bar", {
+                    fill: ["#1ab394", "#d7d7d7"],
+                    width: 100
+                })
+
+                var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394', stroke: '#169c81', width: 64 })
+
+                setInterval(function () {
+                    var random = Math.round(Math.random() * 10)
+                    var values = updatingChart.text().split(",")
+                    values.shift()
+                    values.push(random)
+
+                    updatingChart
+                        .text(values.join(","))
+                        .change()
+                }, 1000);
+                $("#dateFilter").kendoValidator({
+                    rules: {
+                        startDate: function (input) {
+                            if (input.is("#ServiceDate")) {
+                                startDate = kendo.parseDate(input.val());
+                                
+                                if (startDate == null) {
+                                    return false;
+                                }
+                            }
+                            return true;
+                        },
+                        
+                    },
+                    messages: {
+                        startDate: "You must select a date ",
+                    }
+                });
+                $("#report-option").change(function () {
+                    $("#log").ajaxError(function (event, jqxhr, settings, exception) {
+                        alert(exception);
+                    });
+                    var itemSelected = $("select option:selected").first().val();
+                    $.get('@Url.Action("ReportStatuspartial")',
+                        { id: itemSelected }, function (data) {
+                            $("#target").html(data);
+                        });
+                });
+            });
+
+            $('.dataTables-example').dataTable({
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "../scripts/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
+                }
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable('../example_ajax.php', {
+                "callback": function (sValue, y) {
+                    var aPos = oTable.fnGetPosition(this);
+                    oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+                },
+                "submitdata": function (value, settings) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition(this)[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            });
+            function fnClickAddRow() {
+                $('#editable').dataTable().fnAddData([
+                    "Custom row",
+                    "New row",
+                    "New row",
+                    "New row",
+                    "New row"]);
+
+            }
+        </script>
+
+    }

@@ -1,0 +1,359 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5 class="m-b-md">Guests Q1</h5>
+                    <h2 class="text-navy">
+                        <i class="fa fa-play fa-rotate-270"></i> Up
+                    </h2>
+                    <small>Last down 42 days ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content ">
+                    <h5 class="m-b-md">Members Q1</h5>
+                    <h2 class="text-navy">
+                        <i class="fa fa-play fa-rotate-270"></i> Up
+                    </h2>
+                    <small>Last down 42 days ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5 class="m-b-md">Converts Q1</h5>
+                    <h2 class="text-danger">
+                        <i class="fa fa-play fa-rotate-90"></i> Down
+                    </h2>
+                    <small>Converts down 4 days ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5 class="m-b-md">Server status Q43</h5>
+                    <h2 class="text-danger">
+                        <i class="fa fa-play fa-rotate-90"></i> Down
+                    </h2>
+                    <small>Server down since 4:32 pm.</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Guests in last 1month</h5>
+                    <h2>@ViewBag.GuestCount</h2>
+                    <div id="guestsparkline"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Members in last 1month</h5>
+                    <h2>@ViewBag.MemberCount </h2>
+                    <div id="memberparkline"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Converts in last 1month</h5>
+                    <h2>45</h2>
+                    <div id="sparkline3"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Avarage Service time</h5>
+                    <h2>00:1:55</h2>
+                    <div id="sparkline4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Guest gender in last 1month</h5>
+                    <h2>M : @ViewBag.GuestMaleCount / F: @ViewBag.GuestFemaleCount</h2>
+                    <div class="text-center">
+                        <div id="guestgenderpie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Member gender in last 1month</h5>
+                    <h2>M : @ViewBag.MemberMaleCount / F: @ViewBag.MemberFemaleCount</h2>
+                    <div class="text-center">
+                        <div id="membergenderpie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Guest Age Dist. in last 1month</h5>
+                    <h2>Top: </h2>
+                    <div class="text-center">
+                        <div id="guestagepie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Member Age Dist. in last 1month</h5>
+                    <h2>Top: </h2>
+                    <div class="text-center">
+                        <div id="memberagepie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Member Clusters in last 1month</h5>                    
+                    <div class="text-center">
+                        <div id="memberclusterpie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Member ServiceUnits in last 1month</h5>
+                    <div class="text-center">
+                        <div id="memberunitpie"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Birthdays</h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            <tr>
+                                <td class="no-borders">
+                                    <i class="fa fa-circle text-navy"></i>
+                                </td>
+                                <td class="no-borders">
+                                    Femi Adeagbo
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-circle text-navy"></i>
+                                </td>
+                                <td>
+                                    Example element 2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-circle text-navy"></i>
+                                </td>
+                                <td>
+                                    Example element 3
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/plugins/sparkline")
+@Scripts.Render("~/plugins/flot")
+@Scripts.Render("~/plugins/chartJs")
+@Scripts.Render("~/plugins/peity")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('body').addClass('light-navbar');
+           
+            $.getJSON("../../Dashboard/getGuestSparkLineData")
+            .done(function (data) {
+                jQuery('#guestsparkline').sparkline(data, {
+                    type: 'line',
+                    width: '100%',
+                    height: '60',
+                    lineColor: '#1ab394',
+                    fillColor: "#ffffff"
+                })
+            });
+            
+            $.getJSON("../../Dashboard/getMemberSparkLineData")
+            .done(function (data) {
+                jQuery('#memberparkline').sparkline(data, {
+                    type: 'line',
+                    width: '100%',
+                    height: '60',
+                    lineColor: '#1ab394',
+                    fillColor: "#ffffff"
+                })
+            });
+            
+
+            $("#sparkline3").sparkline([74, 43, 23, 55, 54, 32, 24, 12], {
+                type: 'line',
+                width: '100%',
+                height: '60',
+                lineColor: '#ed5565',
+                fillColor: "#ffffff"
+            });
+
+            $("#sparkline4").sparkline([24, 43, 33, 55, 64, 72, 44, 22], {
+                type: 'line',
+                width: '100%',
+                height: '60',
+                lineColor: '#ed5565',
+                fillColor: "#ffffff"
+            });
+
+            $.getJSON("../../Dashboard/getGuestGenderPieData")
+               .done(function (data) {
+                   jQuery('#guestgenderpie').sparkline(data, {
+                       type: 'pie',
+                       height: '140',
+                       sliceColors: ['#1ab394', '#F5F5F5', '#ed5565'],
+                       // Map the offset in the list of values to a name to use in the tooltip
+                       tooltipFormat: '{{offset:offset}} {{value}}',
+                       tooltipValueLookups: {
+                           'offset': {
+                               0: 'Female',
+                               1: 'Male',
+                               2: 'Undefined',
+                           }
+                       }
+                   })
+               });
+            $.getJSON("../../Dashboard/getMemberGenderPieData")
+              .done(function (data) {
+                  console.log(data);
+                  jQuery('#membergenderpie').sparkline(data, {
+                      type: 'pie',
+                      height: '140',
+                      sliceColors: ['#1ab394', '#F5F5F5', '#ed5565'],
+                      // Map the offset in the list of values to a name to use in the tooltip
+                      tooltipFormat: '{{offset:offset}} {{value}}',
+                      tooltipValueLookups: {
+                          'offset': {
+                              0: 'Female',
+                              1: 'Male',
+                              2: 'Undefined',
+                          }
+                      }
+                  })
+              });
+            $.getJSON("../../Dashboard/getGuestAgegroupPieData")
+              .done(function (data) {
+                  console.log(data);
+                  jQuery('#guestagepie').sparkline(data, {
+                      type: 'pie',
+                      height: '140',                      
+                      // Map the offset in the list of values to a name to use in the tooltip
+                      tooltipFormat: '{{offset:offset}} {{value}}',
+                      tooltipValueLookups: {
+                          'offset': {
+                              0: '15-20',
+                              1: '21-25',
+                              2: '26-30',
+                              3: '31-35',
+                              4: '36-40',
+                              5: '41-45',
+                              6: '46-50',
+                              7: '50 & Above',
+                          }
+                      }
+                  })
+              });
+            
+            $.getJSON("../../Dashboard/getMemberAgegroupPieData")
+              .done(function (data) {
+                  console.log(data);
+                  jQuery('#memberagepie').sparkline(data, {
+                      type: 'pie',
+                      height: '140',
+                      // Map the offset in the list of values to a name to use in the tooltip
+                      tooltipFormat: '{{offset:offset}} {{value}}',
+                      tooltipValueLookups: {
+                          'offset': {
+                              0: '15-20',
+                              1: '21-25',
+                              2: '26-30',
+                              3: '31-35',
+                              4: '36-40',
+                              5: '41-45',
+                              6: '46-50',
+                              7: '50 & Above',
+                          }
+                      }
+                  })
+              });
+           
+            $.getJSON("../../Dashboard/getMemberClusterPieData")
+              .done(function (data) {
+                  console.log(data);
+                  jQuery('#memberclusterpie').sparkline(data, {
+                      type: 'pie',
+                      height: '140',
+                      
+                  })
+              });
+
+            $.getJSON("../../Dashboard/getMemberUnitPieData")
+             .done(function (data) {
+                 console.log(data);
+                 jQuery('#memberunitpie').sparkline(data, {
+                     type: 'pie',
+                     height: '140',
+
+                 })
+             });
+        });
+        
+    </script>
+}
+

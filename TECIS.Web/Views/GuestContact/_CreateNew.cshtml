@@ -1,0 +1,126 @@
+﻿@model TECIS.Data.Models.GuestContact
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Add new Contact</h4>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.contact_date, new { @class = "control-label col-md-2" })
+                @(Html.Kendo().DateTimePickerFor(model =>model.contact_date))
+                @Html.ValidationMessageFor(model => model.contact_date)
+                @*<div class="col-md-10">
+                    @Html.EditorFor(model => model.contact_date)
+                    
+                </div>*@
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.contacted_by, new { @class = "control-label col-md-2" })
+                @Html.Kendo().TextBoxFor(model => model.contacted_by)
+                @Html.ValidationMessageFor(model => model.contacted_by)
+                @*<div class="col-md-10">
+                    @Html.EditorFor(model => model.contacted_by)
+                    @Html.ValidationMessageFor(model => model.contacted_by)
+                </div>*@
+            </div>
+            <div class="form-group">
+                 @Html.LabelFor(model => model.clusterid, "Connect group", new { @class = "control-label col-md-2" })
+                  @(Html.Kendo().ComboBox()
+                .Name("clusterId")
+              .Placeholder("Select Cluster...")
+              .DataTextField("ClusterName")
+              .DataValueField("ClusterId")
+              .Filter(FilterType.Contains)
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetClusters", "Clusters");
+                  });
+              })
+               )
+                </div>
+            @*<div class="form-group">
+                                @Html.LabelFor(model => model.theguestid, "Guest", new { @class = "control-label col-md-2" })
+                               
+                                @(Html.Kendo().ComboBox()
+                              .Name("theguestid")
+                                  .Placeholder("Select guest...")
+                              .DataTextField("GuestName")
+                              .DataValueField("GuestId")
+                                  .Filter(FilterType.Contains)
+                                  .DataSource(source => {
+                                      source.Read(read =>
+                                      {
+                                          read.Action("GetCascadeGuests", "Guests")
+                                              .Data("filterSections");
+                                      })
+                                      .ServerFiltering(true);
+                                  })
+                                  .Enable(false)
+                                  .AutoBind(false)
+      .CascadeFrom("clusterId")
+                                                    )
+                                                    <script>
+                                function filterSections() {
+                                    return {
+                                        areas: $("#clusterId").val(),
+                                        sectionFilter: $("#theguestid").data("kendoComboBox").input.val()
+                                    };
+                                }
+                                                    </script>
+                            </div>*@
+          
+            <div class="form-group">
+                @Html.LabelFor(model => model.guest_firstname, new { @class = "control-label col-md-2" })
+                @Html.Kendo().TextBoxFor(model => model.guest_firstname)
+                @Html.ValidationMessageFor(model => model.guest_firstname)
+                
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.guest_lastname, new { @class = "control-label col-md-2" })
+                 @Html.Kendo().TextBoxFor(model => model.guest_lastname)
+                @Html.ValidationMessageFor(model => model.guest_lastname)
+                
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.WouldJoin, new { @class = "control-label col-md-2" })
+                 @Html.Kendo().CheckBoxFor(model => model.WouldJoin)
+                @Html.ValidationMessageFor(model => model.WouldJoin)
+                
+            </div>
+             <div class="form-group">
+                @Html.LabelFor(model => model.HasChurch, new { @class = "control-label col-md-2" })
+                 @Html.Kendo().CheckBoxFor(model => model.HasChurch)
+                @Html.ValidationMessageFor(model => model.HasChurch)
+                
+            </div>
+             <div class="form-group">
+                @Html.LabelFor(model => model.Forgetme, new { @class = "control-label col-md-2" })
+                 @Html.Kendo().CheckBoxFor(model => model.Forgetme)
+                @Html.ValidationMessageFor(model => model.Forgetme)
+                
+            </div>
+            @Html.HiddenFor(model =>model.theguestid)
+            
+
+        </div>
+    </div>
+        <div class="modal-footer">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn" type="button" data-dismiss="modal">Cancel</button>
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </div>
+}
+
+

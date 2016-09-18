@@ -1,0 +1,154 @@
+﻿@using TECIS.Web.Helpers.CrossCutting.Security
+@using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity.EntityFramework;
+@using Microsoft.Owin.Security;
+@using TECIS.Web.Models;
+@using TECIS.Web.Helpers.UI;
+@using TECIS.Data.ViewModels;
+@using TECIS.Data.Models;
+@using TECIS.Data.Identity
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    @if (Request.IsAuthenticated)
+                    {
+                        //var identity = ((CustomPrincipal)HttpContext.Current.User).CustomIdentity;
+                        //var identity = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                        //var identity = UserManager.FindById(User.Identity.GetUserId());
+                         
+                        var Username = User.Identity.GetUserName();
+                        <span>                            
+                            <img alt="user avatar" class="img-circle" src="@Html.ImageOrDefault(Username)"/>
+                        </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    
+                                    <strong class="font-bold">@string.Format("{0} {1}", ViewBag.userfirstname, ViewBag.userlastname)</strong>
+                                </span> <span class="text-muted text-xs block">@ViewBag.Rolename<b class="caret"></b></span>
+                            </span>
+                        </a>
+    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+        <li>
+            <a href="@Url.Action("Profile", "Manage")#tab-profile">
+                <i class="fa fa-user"></i>
+                <span class="text">Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Profile", "Manage")#tab-manage">
+                <i class="fa fa-cog"></i>
+                <span class="text">Settings</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Profile", "Manage")#tab-messages">
+                <i class="fa fa-envelope"></i>
+                <span class="text">Messages</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Ideas")">
+                <i class="fa fa-comments-o"></i>
+                <span class="text">Suggest an Idea</span>
+            </a>
+        </li>
+        <li class="divider"></li>
+        <li><a href="@Url.Action("Login", "Account")">Logout</a></li>
+    </ul>
+                    }
+                </div>
+                <div class="logo-element">
+                    IN+
+                </div>
+            </li>
+            <li class="@Html.IsSelected(controller: "Dashboards")">
+                <a href="@Url.Action("Index", "Dashboards")"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Dashboards")">Dashboard</a></li>
+                    
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "MemberShip")">
+                <a href="@Url.Action("Index", "Layouts")"><i class="fa fa-diamond"></i> <span class="nav-label">MemberShip</span> <span class="label label-primary pull-right">NEW</span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "Guests")"><a href="@Url.Action("Index", "Guests")"> <i class="fa fa-user-plus"></i> Guests</a></li>
+                    <li class="@Html.IsSelected(action: "Members")"><a href="@Url.Action("Index", "Members")">Members</a></li>
+                    <li class="@Html.IsSelected(action: "Membership")"><a href="@Url.Action("Membership", "TecSchoolAttend")">Membership Class</a></li>
+                    <li class="@Html.IsSelected(action: "Development")"><a href="@Url.Action("Development", "TecSchoolAttend")">Development Class</a></li>
+                    <li class="@Html.IsSelected(action: "Maturity")"><a href="@Url.Action("Maturity", "TecSchoolAttend")">Maturity Class</a></li>
+                    <li class="@Html.IsSelected(action: "Attendance")"><a href="@Url.Action("Index", "AttendanceRegs")">Attendance</a></li>
+                     <li class="@Html.IsSelected(action: "Clusters")"><a href="@Url.Action("MyGuests", "Guests")">My Guests</a></li>
+                    <li class="@Html.IsSelected(action: "Clusters")"><a href="@Url.Action("MyMembers", "Members")">My Members</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "ReportsAnalytics")">
+                <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Reports & Analytics</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "ReportViewer")"><a href="@Url.Action("ReportViewer", "Reports")">All Reports</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("GuestReport", "Reports")">Guest Reports</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "Guests")">Flot Charts</a></li>
+                    
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "ServiceUnits")">
+                <a href="#"><i class="fa fa-briefcase"></i> <span class="nav-label">Service Units </span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "ServiceUnits")">Service Units</a></li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Clusters")">
+                <a href="@Url.Action("Index", "Clusters")"><i class="fa fa-group"></i> <span class="nav-label">Connect Groups</span> </a>
+                <ul class="nav nav-second-level collapse">
+                   
+                    <li class="@Html.IsSelected(action: "Clusters")"><a href="@Url.Action("Index", "Clusters")">Connect groups</a></li>
+                    <li class="@Html.IsSelected(action: "MemberLocator")"><a href="@Url.Action("MemberLocator", "Clusters")">Member Locator</a></li>
+                    <li class="@Html.IsSelected(action: "CellLocator")"><a href="@Url.Action("CellLocator", "Clusters")">Connect Group Locator</a></li>
+                    
+                    <li class="@Html.IsSelected(action: "Sections")"><a href="@Url.Action("Index", "Sections")">Sections</a></li>
+                    <li class="@Html.IsSelected(action: "Areas")"><a href="@Url.Action("Index", "CAreas")">Areas</a></li>
+                    <li class="@Html.IsSelected(action: "Zones")"><a href="@Url.Action("Index", "Zones")">Zones</a></li>
+                    <li class="@Html.IsSelected(action: "GuestContact")"><a href="@Url.Action("Index", "GuestContact")">Add Guest Contact</a></li>
+
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Metrics")">
+                <a href="@Url.Action("Index", "Metrics")"><i class="fa fa-globe"></i> <span class="nav-label">Event Management</span> </a>
+            </li>
+            <li class="@Html.IsSelected(controller: "SecurityManagement")">
+                <a href="#"><i class="fa fa-lock"></i> <span class="nav-label">Security Management </span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "UsersAdmin")">Users Admin</a></li>
+                    <li class="@Html.IsSelected(action: "Index")"><a href="@Url.Action("Index", "RolesAdmin")">Roles Admin</a></li>
+                    
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Metrics")">
+                <a href="@Url.Action("Index", "Metrics")"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span> </a>
+            </li>
+            
+            
+            
+            
+            <li class="@Html.IsSelected(controller: "TEC Gallery")">
+                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">TEC Gallery</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "BasicGallery")"><a href="@Url.Action("BasicGallery", "Gallery")">Photos</a></li>
+                    <li class="@Html.IsSelected(action: "Video")"><a href="@Url.Action("Video", "UIElements")">Video</a></li>
+                   
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "TEC Facilities")">
+                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">TEC Facilities</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+                    <li class="@Html.IsSelected(action: "BasicGallery")"><a href="@Url.Action("BookAMeetingRoom", "Facilities")">Book a Meeting Room</a></li>
+                   
+                </ul>
+            </li>
+            
+        </ul>
+    </div>
+</nav>

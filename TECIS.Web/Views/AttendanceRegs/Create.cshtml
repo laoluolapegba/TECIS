@@ -1,0 +1,459 @@
+﻿@model TECIS.Data.Models.AttendanceReg
+
+@{
+    ViewBag.Title = "Register Attendance ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Create</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Create</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-sm-8">
+        <div class="title-action">
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary"})
+        </div>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <div class="col-lg-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Attendance <small>@DateTime.Now</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-sm-8 b-r">
+                            <div class="form-horizontal">
+                                <div class="form-group" id="data_1">
+
+                                    @Html.LabelFor(model => model.servicedate, new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-7">
+                                        <div class="input-group date">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            @Html.EditorFor(model => model.servicedate)
+                                            @Html.ValidationMessageFor(model => model.servicedate)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Location", "Location", htmlAttributes: new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-7">
+                                        @Html.DropDownList("Location", null, htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Service Type", htmlAttributes: new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-7">
+                                        @Html.RadioButtonFor(m => m.servicetype, "1") First
+                                        @Html.RadioButtonFor(m => m.servicetype, "2") Second
+                                        @Html.RadioButtonFor(m => m.servicetype, "3") Third
+                                        @Html.RadioButtonFor(m => m.servicetype, "4") Fourth
+                                        @Html.ValidationMessageFor(model => model.servicetype, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.service_start_time, new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-3">
+                                        <div class="input-group clockpicker " data-autoclose="true">
+                                            @Html.EditorFor(model => model.service_start_time)
+                                            @Html.ValidationMessageFor(model => model.service_start_time)
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-clock-o"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.service_end_time, new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-3">
+                                        <div class="input-group clockpicker " data-autoclose="true">
+                                            @Html.EditorFor(model => model.service_end_time)
+                                            @Html.ValidationMessageFor(model => model.service_end_time)
+                                            <span class="input-group-addon">
+                                                <span class="fa fa-clock-o"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.message_title, new { @class = "control-label col-lg-3" })
+
+                                    <div class="col-lg-7">
+                                        @Html.EditorFor(model => model.message_title)
+                                        @Html.ValidationMessageFor(model => model.message_title)
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.speaker, new { @class = "control-label col-lg-3" })
+                                    <div class="col-lg-7">
+                                        @Html.EditorFor(model => model.speaker)
+                                        @Html.ValidationMessageFor(model => model.speaker)
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+
+                            <p class="text-center">
+                                <a href=""><i class="fa fa-sign-in big-icon"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Adult <small>Attendance</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div role="form">
+                            <div class="col-sm-2">
+                                <div class="form-group">                                    
+                                    @Html.LabelFor(model => model.malecount)                                    
+                                    @Html.EditorFor(model => model.malecount, new { @placeholder = "0" })
+                                    @Html.ValidationMessageFor(model => model.malecount)                                    
+                                </div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.femalecount)
+                                @Html.EditorFor(model => model.femalecount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.femalecount)    </div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.childcount)
+                                @Html.EditorFor(model => model.childcount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.childcount)    </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.guestcount)
+                                @Html.EditorFor(model => model.guestcount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.guestcount)</div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.convertcount)
+                                @Html.EditorFor(model => model.convertcount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.convertcount)</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Children's Church (Age 0-7) <small>Attendance</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div role="form">
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.childboyscount)
+                                @Html.EditorFor(model => model.childboyscount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.childboyscount)  </div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.childgirlscount)
+                                @Html.EditorFor(model => model.childgirlscount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.childgirlscount)</div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.childnannies)
+                                @Html.EditorFor(model => model.childnannies, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.childnannies)</div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.childteachers)
+                                @Html.EditorFor(model => model.childteachers, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.childteachers)</div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.carscount)
+                                @Html.EditorFor(model => model.carscount, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.carscount)</div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.security)
+                                @Html.EditorFor(model => model.security, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.security)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Pre-teenz (8-12) <small>Attendance</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div role="form">
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.pteenboys)
+                                @Html.EditorFor(model => model.pteenboys, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.pteenboys) </div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.pteengirls)
+                                @Html.EditorFor(model => model.pteengirls, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.pteengirls)</div>
+
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">@Html.LabelFor(model => model.pteenteachers)
+                                @Html.EditorFor(model => model.pteenteachers, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.pteenteachers)</div>
+
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Teenz (13-19) <small>Attendance</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div role="form">
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.teenboys)
+                                @Html.EditorFor(model => model.teenboys, new { @placeholder = "0" })
+                                @Html.ValidationMessageFor(model => model.pteenboys)
+                            </div>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.teengirls)
+                            @Html.EditorFor(model => model.teengirls, new { @placeholder = "0" })
+                            @Html.ValidationMessageFor(model => model.teengirls)
+                        </div>
+
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.teenteachers)
+                            @Html.EditorFor(model => model.teenteachers, new { @placeholder = "0" })
+                            @Html.ValidationMessageFor(model => model.teenteachers)
+                        </div>
+
+                        </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content">
+                    <div class="form-horizontal">
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Register" class="btn btn-primary" />
+                                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-white" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}     
+        
+
+        
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/awesomeCheckboxStyles")
+    @Styles.Render("~/plugins/clockpickerStyles")
+    @Styles.Render("~/plugins/switcheryStyles")
+    @Styles.Render("~/plugins/jasnyBootstrapStyles")
+    @Styles.Render("~/plugins/dataPickerStyles")
+    @Styles.Render("~/plugins/select2Styles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/iCheck")
+    @Scripts.Render("~/plugins/dataPicker")
+    @Scripts.Render("~/plugins/jasnyBootstrap")
+    @Scripts.Render("~/plugins/switchery")
+    @Scripts.Render("~/plugins/chosen")
+    @Scripts.Render("~/plugins/knob")
+    @Scripts.Render("~/plugins/clockpicker")
+    @Scripts.Render("~/plugins/dateRange")
+    @Scripts.Render("~/plugins/select2")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#servicedate').datepicker("setDate", new Date());
+            
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+
+            $('.clockpicker').clockpicker();
+
+
+        });
+
+
+        $(".dial").knob();
+
+   
+    </script>
+  }
+
+  
+

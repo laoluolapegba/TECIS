@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{262FC48A-532F-412E-ACA6-A7154C5FFAD8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TECIS.Data</RootNamespace>
+    <AssemblyName>TECIS.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySql.Data.Entity.6.9.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddressLocator.cs" />
+    <Compile Include="Models\AgeGroup.cs" />
+    <Compile Include="Models\Answer.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\AttendanceReg.cs" />
+    <Compile Include="Models\Cluster.cs" />
+    <Compile Include="Models\ClusterArea.cs" />
+    <Compile Include="Models\AuditTrail.cs" />
+    <Compile Include="Models\CArea.cs" />
+    <Compile Include="Models\CSection.cs" />
+    <Compile Include="Models\CZone.cs" />
+    <Compile Include="Models\ClusterType.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
+    <Compile Include="Models\TecSchool.cs" />
+    <Compile Include="Models\GuestContact.cs" />
+    <Compile Include="Models\GuestUpload.cs" />
+    <Compile Include="Models\Guest.cs" />
+    <Compile Include="Identity\IdentityModels.cs" />
+    <Compile Include="Identity\MySqlConfiguration.cs" />
+    <Compile Include="Identity\MySqlHistoryContext.cs" />
+    <Compile Include="Identity\MySqlInitializer.cs" />
+    <Compile Include="Models\Idea.cs" />
+    <Compile Include="Models\IdeaCategory.cs" />
+    <Compile Include="Models\IdeaStatus.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\MaritalStat.cs" />
+    <Compile Include="Models\Meeting.cs" />
+    <Compile Include="Models\MeetingAttendee.cs" />
+    <Compile Include="Models\MemberUpload.cs" />
+    <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\MyDbInitializer.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\Occupation.cs" />
+    <Compile Include="Models\Permission.cs" />
+    <Compile Include="Models\ReportStatus.cs" />
+    <Compile Include="Models\RolePermXref.cs" />
+    <Compile Include="Models\RptDefinition.cs" />
+    <Compile Include="Models\ServiceUnit.cs" />
+    <Compile Include="Models\TecIsModel.Context.cs" />
+    <Compile Include="Models\UserProfile.cs" />
+    <Compile Include="Models\UserRole.cs" />
+    <Compile Include="Models\UserRoleXref.cs" />
+    <Compile Include="Models\vwAttendance.cs" />
+    <Compile Include="Paging\IPagedList.cs" />
+    <Compile Include="Paging\PagedList.cs" />
+    <Compile Include="Paging\PagedListLinqExtentions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AttendanceRptViewModel.cs" />
+    <Compile Include="ViewModels\CellLocatorViewModel.cs" />
+    <Compile Include="ViewModels\NotificationViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <Compile Include="Models\ServicesType.cs" />
+    <Compile Include="Models\SMSObject.cs" />
+    <Compile Include="Models\SmsResponse.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

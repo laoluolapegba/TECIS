@@ -1,0 +1,251 @@
+﻿@model TECIS.Data.Models.AttendanceReg
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details AttendanceReg</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.servicedate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servicedate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servicetype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servicetype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.malecount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.malecount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.femalecount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.femalecount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.childcount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.childcount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guestcount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guestcount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.convertcount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.convertcount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.childboyscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.childboyscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.childgirlscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.childgirlscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.childnannies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.childnannies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.childteachers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.childteachers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pteenboys)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pteenboys)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pteengirls)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pteengirls)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pteenteachers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pteenteachers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teenboys)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teenboys)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teengirls)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teengirls)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.teenteachers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.teenteachers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.carscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.security)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.security)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_start_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_start_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service_end_time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service_end_time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.speaker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.speaker)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

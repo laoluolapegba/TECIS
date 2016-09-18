@@ -1,0 +1,315 @@
+﻿
+@{
+    ViewBag.Title = "BookAMeetingRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>BookAMeetingRoom</h2>
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-8">
+        <h2>Calendar</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboard_1", "Dashboards")">Home</a>
+            </li>
+            <li>
+                Extra pages
+            </li>
+            <li class="active">
+                <strong>Calendar</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInDown">
+        <div class="col-lg-3">
+            
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h2>How to Book</h2> DoubleClick on the calendar day and add a title.
+                    <p>
+                        <a href="https://tecis.azurewebsites.net/scheduling/" target="_blank">See more</a>
+                    </p>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Draggable Events</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id='external-events'>
+                        <p>Drag a event and drop into calendar.</p>
+                        <div class='external-event navy-bg'>Go to shop and buy some products.</div>
+                        <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
+                        <p class="m-t">
+                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>remove after drop</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Meeting Appointments </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li>
+                                <a href="#">Config option 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Config option 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="team-schedule">
+    <div id="people">
+        <input checked type="checkbox" id="alex" value="1">
+        <input checked type="checkbox" id="bob" value="2">
+        <input type="checkbox" id="charlie" value="3">
+    </div>
+</div>
+@(Html.Kendo().Scheduler<TECIS.Web.Models.Scheduler.MeetingViewModel>()
+    .Name("scheduler")
+    .Date(DateTime.Today)
+        .StartTime(new DateTime(2016, 04, 24, 7, 00, 00))
+    .Height(600)
+    .Views(views =>
+    {
+        views.DayView();
+        views.WorkWeekView(workWeekView => workWeekView.Selected(true));
+        views.WeekView();
+        views.MonthView();
+        views.AgendaView();
+        views.TimelineView();
+    })
+    .Timezone("Etc/UTC")
+    .Resources(resource =>
+    {
+        resource.Add(m => m.RoomID)
+            .Title("Room")
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .DataColorField("Color")
+            .BindTo(new[] { 
+                new { Text = "Room 1", Value = 1, Color = "#f8a398" } ,
+                new { Text = "Room 2", Value = 2, Color = "#51a0ed" } ,
+                new { Text = "Ground Floor", Value = 3, Color = "#56ca85" } 
+            });
+        resource.Add(r => r.Attendees)
+           .Title("Attendees")
+           .Multiple(true)
+           .DataTextField("MemberName")
+           .DataValueField("MemberId")
+           .DataColorField("MemberSchedulerColor")
+           .DataSource(ds => ds.Read(read => read.Action("GetMembersResource", "Members")));
+    })
+        .Events(events => events
+            .Add("scheduler_add")
+            .Save("scheduler_save")
+        )
+        //    .DataSource(dataSource =>
+        //        dataSource.Custom()
+        //        .Schema(schema => schema
+        //            .Model(m =>
+        //            {
+        //                m.ClearFields();
+        //                m.Id(f => f.MeetingID);
+        //                m.Field("title", typeof(string)).From("Title");
+        //                m.Field(f => f.Attendees).DefaultValue(new List<int>() { 1 });
+        //                m.Field("recurrenceId", typeof(int)).From("RecurrenceID");
+        //                m.Field("startdate", typeof(DateTime)).From("StartDate");
+        //                m.Field("enddate", typeof(DateTime)).From("EndDate");
+        //                m.Field("description", typeof(string)).From("Description");
+        //                m.Field("recurrenceID", typeof(int)).From("RecurrenceID");
+        //                m.Field("recurrenceRule", typeof(string)).From("RecurrenceRule");
+        //                m.Field("recurrenceException", typeof(string)).From("RecurrenceException");
+        //                m.Field("isAllDay", typeof(bool)).From("IsAllDay");
+        //                m.Field("startTimezone", typeof(string)).From("StartTimezone");
+        //                m.Field("endTimezone", typeof(string)).From("EndTimezone");
+                        
+        //            }))
+        //    )
+        //.BindTo(Model)
+        .DataSource(d => d
+            .Model(m =>
+            {
+                m.Id(f => f.MeetingID);
+                m.Field(f => f.Title).DefaultValue("No title");
+                //m.Field(f => f.OwnerID).DefaultValue(1);
+                m.RecurrenceId(f => f.RecurrenceID);
+            }).Read("Meetings_Read", "Facilities")
+                    .Create("Meetings_Create", "Facilities")
+                    .Destroy("Meetings_Destroy", "Facilities")
+                    .Update("Meetings_Update", "Facilities")
+
+        )
+)
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/fullCalendarStyles")
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+<style>
+    .invalid-slot {
+        background: red !important;
+        cursor: no-drop;
+    }
+</style>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/plugins/fullCalendar")
+    @Scripts.Render("~/plugins/iCheck")
+
+
+    <script type="text/javascript">
+        function scheduler_resize(e) {
+            if (roomIsOccupied(e.startdate, e.enddate, e.event, e.resources) || attendeeIsOccupied(e.startdate, e.enddate, e.event, e.resources)) {
+                this.wrapper.find(".k-marquee-color").addClass("invalid-slot");
+                e.preventDefault();
+            }
+        }
+
+        function scheduler_resizeEnd(e) {
+            if (!checkAvailability(e.startdate, e.enddate, e.events)) {
+                e.preventDefault();
+            }
+        }
+
+        function scheduler_move(e) {
+            if (roomIsOccupied(e.startdate, e.enddate, e.event, e.resources) || attendeeIsOccupied(e.startdate, e.enddate, e.event, e.resources)) {
+                this.wrapper.find(".k-event-drag-hint").addClass("invalid-slot");
+            }
+        }
+
+        function scheduler_moveEnd(e) {
+            if (!checkAvailability(e.startdate, e.enddate, e.event, e.resources)) {
+                e.preventDefault();
+            }
+        }
+
+        function scheduler_add(e) {
+            if (!checkAvailability(e.event.startdate, e.event.enddate, e.event)) {
+                e.preventDefault();
+            }
+        }
+
+        function scheduler_save(e) {
+            if (!checkAvailability(e.event.startdate, e.event.enddate, e.event)) {
+                e.preventDefault();
+            }
+        }
+
+        function occurrencesInRangeByResource(startdate, enddate, resourceFieldName, event, resources) {
+            var scheduler = $("#scheduler").getKendoScheduler();
+
+            var occurrences = scheduler.occurrencesInRange(startdate, enddate);
+
+            var idx = occurrences.indexOf(event);
+            if (idx > -1) {
+                occurrences.splice(idx, 1);
+            }
+
+            event = $.extend({}, event, resources);
+
+            return filterByResource(occurrences, resourceFieldName, event[resourceFieldName]);
+        }
+
+        function filterByResource(occurrences, resourceFieldName, value) {
+            var result = [];
+            var occurrence;
+
+            for (var idx = 0, length = occurrences.length; idx < length; idx++) {
+                occurrence = occurrences[idx];
+                var resourceValue = occurrence[resourceFieldName];
+
+                if (resourceValue === value) {
+                    result.push(occurrence);
+                } else if (resourceValue instanceof kendo.data.ObservableArray) {
+                    if (value) {
+                        for (var i = 0; i < value.length; i++) {
+                            if (resourceValue.indexOf(value[i]) != -1) {
+                                result.push(occurrence);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        function attendeeIsOccupied(startdate, enddate, event, resources) {
+            var occurrences = occurrencesInRangeByResource(startdate, enddate, "Attendees", event, resources);
+            if (occurrences.length > 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function roomIsOccupied(startdate, enddate, event, resources) {
+            var occurrences = occurrencesInRangeByResource(startdate, enddate, "RoomID", event, resources);
+            if (occurrences.length > 0) {
+                return true;
+            }
+            return false;
+        }
+
+        function checkAvailability(startdate, enddate, event, resources) {
+            
+            if (roomIsOccupied(startdate, enddate, event, resources)) {
+                setTimeout(function () {
+                    alert("This room is not available in this time period.");
+                }, 0);
+
+                return false;
+            }
+
+            return true;
+        }
+
+</script>
+}
+
+

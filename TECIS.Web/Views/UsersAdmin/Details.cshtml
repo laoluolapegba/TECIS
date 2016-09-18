@@ -1,0 +1,88 @@
+﻿@model TECIS.Data.Identity.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>User</h5>
+                </div>
+                <div class="ibox-content">
+
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.UserName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Firstname)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Firstname)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Lastname)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Lastname)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.AdminConfirmed)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.AdminConfirmed)
+                        </dd>
+                    </dl>
+
+
+                </div>
+                <h4>List of roles for this user</h4>
+                @if (ViewBag.RoleNames.Count == 0)
+                {
+                    <hr />
+                    <p>No roles found for this user.</p>
+                }
+                <table class="table">
+
+                    @foreach (var item in ViewBag.RoleNames)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white" })
+
+
+        </div>
+    </div>
+</div>
+
+
+
+

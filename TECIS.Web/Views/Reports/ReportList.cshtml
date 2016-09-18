@@ -1,0 +1,72 @@
+﻿@model IEnumerable<TECIS.Data.Models.RptDefn>
+
+    @{
+        ViewBag.Title = "Reports List";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Reports List</h2>
+
+    <div class="widget widget-table">
+        <div class="widget-header">
+            <h3><i class="fa fa-table"></i> notes</h3> <em> ...</em>
+        </div>
+        <div class="widget-content">
+            <table id="featured-datatable" class="table table-sorting table-striped table-hover datatable">
+                <thead>
+                    <tr>
+                        <th>
+                            Report Name
+                        </th>
+
+                        <th>
+                            Report Description
+                        </th>
+                        
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Report_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Report_Description)
+                            </td>
+                            
+                            <td>
+                                @Html.ActionLink("View Report", "ReportViewer", new { id = item.Report_Id }) |
+                                <a href="@Url.Action("PrintReport", "Report", new { id = item.Report_Id, target = "_blank", ReportFormat = "2" }) ">
+                                     <i class="fa fa-file-word-o"></i>
+                                </a>
+                                |
+                                <a href="@Url.Action("PrintReport", "Report", new { id = item.Report_Id, target = "_blank", ReportFormat = "1" }) ">
+                                     <i class="fa fa-file-pdf-o"></i>
+                                </a>
+                                |
+                                <a href="@Url.Action("PrintReport", "Report", new { id = item.Report_Id, target = "_blank", ReportFormat = "3" }) ">
+                                     <i class="fa fa-file-excel-o"></i>
+                                </a>
+                            </td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="assets/js/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="assets/js/plugins/datatable/exts/dataTables.colVis.bootstrap.js"></script>
+    <script src="assets/js/plugins/datatable/exts/dataTables.colReorder.min.js"></script>
+    <script src="assets/js/plugins/datatable/exts/dataTables.tableTools.min.js"></script>
+    <script src="assets/js/plugins/datatable/dataTables.bootstrap.js"></script>
+    <script src="assets/js/plugins/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="assets/js/plugins/jqgrid/i18n/grid.locale-en.js"></script>
+    <script src="assets/js/plugins/jqgrid/jquery.jqGrid.fluid.js"></script>
+    <script src="assets/js/plugins/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+    <script src="assets/js/king-table.js"></script>

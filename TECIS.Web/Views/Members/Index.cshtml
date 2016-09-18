@@ -1,0 +1,244 @@
+﻿@model IEnumerable<TECIS.Data.Models.Member>
+
+@{
+    ViewBag.Title = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Index", "Home")">Home</a>
+            </li>
+            <li>
+                <a>Membership</a>
+            </li>
+            <li class="active">
+                <strong>Members</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Members</h5>
+					<div class="ibox-tools">
+                        @Html.ActionLink("Import Members", "ImportMembers", null, new { @class = "btn btn-primary btn-xs" })
+						@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs"})
+                        @Html.ActionLink("Recently Uploaded", "UploadView", null, new { @class = "btn btn-primary btn-xs" })
+					</div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive" >
+                        <table style="width: auto;" class="table table-striped  table-condensed table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.merberid)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.surname)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.othernames)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.telephone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.email_address)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.dob)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.gender)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.wedding_anniv)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.occupation)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.no_of_children)
+                                    </th>
+                                    <th>
+                        @Html.DisplayNameFor(model => model.cluster.ClusterName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.maritalstats.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceunit.UnitName)
+                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.merberid)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.surname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.othernames)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.telephone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.email_address)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.dob)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.gender)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.wedding_anniv)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.occupation)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.no_of_children)
+                                        </td>
+                                        <td>
+                            @Html.DisplayFor(modelItem => item.cluster.ClusterName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.maritalstats.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.serviceunit.UnitName)
+                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>footer</th>
+                                    <th>-</th>
+                                    <th>footer stuff</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.dataTables-example').dataTable({
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "../scripts/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
+                }
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable( '../example_ajax.php', {
+                "callback": function( sValue, y ) {
+                    var aPos = oTable.fnGetPosition( this );
+                    oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+                },
+                "submitdata": function ( value, settings ) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition( this )[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            } );
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData( [
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row" ] );
+
+        }
+        $("#chkSelectAll").bind("change", function () {
+            $(".chkSelect").prop("checked", $(this).prop("checked"));
+        });
+        $(".chkSelect").bind("change", function () {
+            if (!$(this).prop("checked"))
+                $("#chkSelectAll").prop("checked", false);
+        });
+        $(".alert").hide().fadeIn("slow");
+    </script>
+}
+
+
+
+
+

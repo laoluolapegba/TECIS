@@ -1,0 +1,225 @@
+﻿@model IEnumerable<TECIS.Data.Models.TecSchoolAttendance>
+
+@{
+    ViewBag.Title = "Maturity School ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Index</h2>
+        <ol class="breadcrumb">
+            <li class="active">
+                <strong>Maturity School Attendance</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>List of Attendees in Maturity School</h5>
+					<div class="ibox-tools">
+                        @Html.ActionLink("Import MemberShip Data", "ImportTecSchAttend", null, new { @class = "btn btn-primary btn-xs" })
+                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Add", "Create", "TecSchoolAttend", htmlAttributes: new { data_modal = "", @class = "btn btn-primary pull-right" })
+
+
+					</div>
+                </div>
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Surname)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.OtherNames)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.EmailAddress)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.membership_class)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.membership_class_date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.development_class)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.development_class_date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.maturity_class)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.maturity_class_date)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Surname)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OtherNames)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.membership_class)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.membership_class_date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.development_class)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.development_class_date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.maturity_class)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.maturity_class_date)
+                                        </td>
+                                        <td style="width:20px">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li> @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-list'></span>", "Details", "Details", "TecSchoolAttend", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "btn btn-default" })</li>
+                                                    <li>@Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", "Edit", "Edit", "TecSchoolAttend", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "btn btn-primary" })</li>
+                                                    <li class="divider"></li>
+                                                    <li>@Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Delete", "Delete", "TecSchoolAttend", routeValues: new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger" })</li>
+                                                </ul>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>-</th>
+                                    <th>-</th>
+
+                                    <th>-</th>
+
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+                                    <th>-</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modalform")
+ @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('.dataTables-example').dataTable({
+                "dom": 'T<"clear">lfrtip',
+                "tableTools": {
+                    "sSwfPath": "../scripts/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
+                }
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable( '../example_ajax.php', {
+                "callback": function( sValue, y ) {
+                    var aPos = oTable.fnGetPosition( this );
+                    oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+                },
+                "submitdata": function ( value, settings ) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition( this )[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            } );
+
+
+        });
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData( [
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row" ] );
+
+        }
+        $("#chkSelectAll").bind("change", function () {
+            $(".chkSelect").prop("checked", $(this).prop("checked"));
+        });
+        $(".chkSelect").bind("change", function () {
+            if (!$(this).prop("checked"))
+                $("#chkSelectAll").prop("checked", false);
+        });
+        $(".alert").hide().fadeIn("slow");
+    </script>
+}
+
+
+
+

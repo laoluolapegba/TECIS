@@ -1,0 +1,66 @@
+﻿@using TECIS.Data.Models;
+@using TECIS.Web.Helpers.CrossCutting.Security
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Inbox";
+}
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Messages</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a>Manage</a>
+            </li>
+            <li class="active">
+                <strong>Messages</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeIn">
+
+    <div class="tabs-container">
+        <p class="text-success">@ViewBag.StatusMessage</p>
+        <ul class="nav nav-tabs">
+            <li class=""><a data-toggle="tab" href="#tab-3"> <i class="fa fa-bell"></i> Alerts</a></li>
+           
+            <li class="active"><a data-toggle="tab" href="#tab-5"><i class="fa fa-envelope"></i> Notificactions</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tab-3" class="tab-pane active">
+                <div class="panel-body">
+                    <div class="row">
+                       
+
+                        <button class="btn btn-default print-btn"><i class="fa fa-print" onclick="print()"></i> Print</button>
+
+
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tab-5" class="tab-pane">
+                <div class="panel-body">
+                   @Html.Partial("_RenderNotifications", ViewBag.NotificationList as IEnumerable<Notification>)
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+    
+    @section topLevel{
+        @{ Html.RenderPartial("_RenderNotifications.Modal"); }
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @{ Html.RenderPartial("_RenderNotifications.js"); }
+    }

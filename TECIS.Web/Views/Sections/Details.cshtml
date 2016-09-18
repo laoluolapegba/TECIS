@@ -1,0 +1,90 @@
+﻿@model TECIS.Data.Models.CSection
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Details</h2>
+        <ol class="breadcrumb">
+            <li>
+                @Html.ActionLink("List", "Index")
+            </li>
+            <li class="active">
+                <strong>Details</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Details CSection</h5>
+                </div>
+                <div class="ibox-content">
+
+
+				    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SectAreas.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectAreas.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionLeader)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionLeader)
+        </dd>
+<dt>
+            @Html.DisplayNameFor(model => model.SectionEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionEmail)
+        </dd>
+
+    </dl>
+
+
+	    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-white"})
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
