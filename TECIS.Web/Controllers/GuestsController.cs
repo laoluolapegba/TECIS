@@ -381,6 +381,10 @@ namespace TECIS.Web.Controllers
         {
             return View();
         }
+        public ActionResult GuestImport()
+        {
+            return View();
+        }
 
         //[HttpPost, HttpParamAction("ImportGuests"), ValidateAntiForgeryToken]
         [HttpPost, ValidateAntiForgeryToken]
