@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web;
 using TECIS.Web.Controllers;
+using Elmah;
 namespace TECIS.Web
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -62,5 +63,20 @@ namespace TECIS.Web
             System.Threading.Thread.CurrentThread.CurrentCulture = newCulture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = newCulture;
         }
+        //protected void ErrorLog_Filtering(object sender, ExceptionFilterEventArgs e)
+        //{
+        //    e.Dismiss();
+        //    return;
+
+        //    //var httpContext = e.Context as HttpContext;
+        //    //if (httpContext == null)
+        //    //{
+        //    //    return;
+        //    //}
+
+        //    //var error = new Error(e.Exception, httpContext);
+        //    //ErrorLog.GetDefault(httpContext).Log(error);
+        //    //e.Dismiss();
+        //}
     }
 }

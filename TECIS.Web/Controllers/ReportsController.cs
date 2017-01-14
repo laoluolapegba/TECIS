@@ -120,8 +120,10 @@ namespace TECIS.Web.Controllers
                                 var fName = string.Format("Group_GuestList{0}{1}", item.ClusterId, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff"));
 
                                 string filePhysicalPath = Server.MapPath("~/App_Data/" + fName + ".xlsx");
+                                Server.ClearError();
                                 Response.Clear();
-                                Response.Charset = "";
+                                Response.ClearHeaders();
+                                Response.Buffer = true;
                                 Response.ContentEncoding = System.Text.Encoding.UTF8;
                                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
                                 Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -138,8 +140,7 @@ namespace TECIS.Web.Controllers
                                     System.IO.File.WriteAllBytes(filePhysicalPath, pck.GetAsByteArray());
                                 }
 
-                                Response.Flush();
-                                Response.End();
+                                
                                 Response.BufferOutput = true;
                                 //xpt.ToExcel(HttpContext.Response, exportguests, dataFile);
 
@@ -175,6 +176,8 @@ namespace TECIS.Web.Controllers
                         }
 
                     }
+                Response.Flush();
+                Response.End();
                  #endregion
             }
             else if (rptoption =="1")
@@ -371,7 +374,10 @@ namespace TECIS.Web.Controllers
                             var fName = string.Format("Area_GuestList{0}{1}", item.AreaId, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff"));
 
                             string filePhysicalPath = Server.MapPath("~/App_Data/" + fName + ".xlsx");
+                            Server.ClearError();
                             Response.Clear();
+                            Response.ClearHeaders();
+                            Response.Buffer = true;
                             Response.Charset = "";
                             Response.ContentEncoding = System.Text.Encoding.UTF8;
                             Response.Cache.SetCacheability(HttpCacheability.NoCache);
@@ -389,8 +395,7 @@ namespace TECIS.Web.Controllers
                                 System.IO.File.WriteAllBytes(filePhysicalPath, pck.GetAsByteArray());
                             }
 
-                            Response.Flush();
-                            Response.End();
+                            
 
                             //xpt.ToExcel(HttpContext.Response, exportguests, dataFile);
 
@@ -426,6 +431,8 @@ namespace TECIS.Web.Controllers
                     }
 
                 }
+                Response.Flush();
+                Response.End();
                 #endregion
 
             }
@@ -497,12 +504,18 @@ namespace TECIS.Web.Controllers
                             var fName = string.Format("Zone_GuestList{0}{1}", item.ZoneId, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-fff"));
 
                             string filePhysicalPath = Server.MapPath("~/App_Data/" + fName + ".xlsx");
+                            Server.ClearError();
                             Response.Clear();
-                            Response.Charset = "";
+                            Response.ClearHeaders();
+                            Response.Buffer = true;
+                            
+                            //Response.Charset = "";
                             Response.ContentEncoding = System.Text.Encoding.UTF8;
                             Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                            //R
                             Response.AddHeader("content-disposition", "attachment;filename=\"" + fName + "\"");
+                            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";                            
+                            
 
                             using (ExcelPackage pck = new ExcelPackage())
                             {
@@ -515,8 +528,7 @@ namespace TECIS.Web.Controllers
                                 System.IO.File.WriteAllBytes(filePhysicalPath, pck.GetAsByteArray());
                             }
 
-                            Response.Flush();
-                            Response.End();
+                            
 
                             //xpt.ToExcel(HttpContext.Response, exportguests, dataFile);
 
@@ -524,9 +536,9 @@ namespace TECIS.Web.Controllers
                             MailAddress to = new MailAddress(item.ZoneEmail);
                             MailMessage msg = new MailMessage(from, to);
                             var sb = new System.Text.StringBuilder(137);
-                            sb.AppendLine(@"Dear Leaders").Append(Environment.NewLine);
-                            sb.AppendLine(@"Please find attached guest list from your area for today's service").Append(Environment.NewLine);
-                            sb.AppendLine(@"Kindly get in touch with them").Append(Environment.NewLine);
+                            sb.AppendLine(@"Dear Leader,").Append(Environment.NewLine);
+                            sb.AppendLine(@"Please find attached guest list from your area for today's service.").Append(Environment.NewLine);
+                            sb.AppendLine(@"Kindly get in touch with them.").Append(Environment.NewLine);
                             sb.AppendLine(@"Regards.");
 
                             msg.Body = sb.ToString();
@@ -552,6 +564,8 @@ namespace TECIS.Web.Controllers
                     }
 
                 }
+                Response.Flush();  //moved here cos once you have done a Response.Flush() in your first function you have already send the header data
+                Response.End();
                 #endregion
             }
             

@@ -38,7 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <IncludeIisSettings>true</IncludeIisSettings>
+    <!-- <IncludeIisSettings>true</IncludeIisSettings> -->
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
@@ -1006,6 +1006,8 @@
     <Content Include="Content\kendo\2016.1.112\images\kendoui.ttf" />
     <Content Include="Content\kendo\2016.1.112\images\kendoui.woff" />
     <None Include="Properties\PublishProfiles\Inspinia.pubxml" />
+    <None Include="Properties\PublishProfiles\tecapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\tecapp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\tecis.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
@@ -2044,6 +2046,15 @@
     <Content Include="Views\TecSchoolAttend\Maturity.cshtml" />
     <Content Include="Views\TecSchoolAttend\ImportTecSchAttend.cshtml" />
     <Content Include="Views\GuestContact\_CreateNew.cshtml" />
+    <Content Include="Web - Copy.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web - Copy.Debug.config">
+      <DependentUpon>Web - Copy.config</DependentUpon>
+    </Content>
+    <Content Include="Web - Copy.Release.config">
+      <DependentUpon>Web - Copy.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TECIS.Data\TECIS.Data.csproj">

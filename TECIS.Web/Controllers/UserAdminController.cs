@@ -167,7 +167,7 @@ namespace TECIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Firstname,Lastname,EmailConfirmed,AdminConfirmed")] EditUserViewModel editUser, params string[] selectedRole)
         {
-            ModelStateErrors(ModelState);
+            //ModelStateErrors(ModelState);
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByIdAsync(editUser.Id);
