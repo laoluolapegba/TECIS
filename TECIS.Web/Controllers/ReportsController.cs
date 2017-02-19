@@ -266,8 +266,7 @@ namespace TECIS.Web.Controllers
                                 System.IO.File.WriteAllBytes(filePhysicalPath, pck.GetAsByteArray());
                             }
 
-                            Response.Flush();
-                            Response.End();
+                           
 
                             //xpt.ToExcel(HttpContext.Response, exportguests, dataFile);
 
@@ -301,8 +300,10 @@ namespace TECIS.Web.Controllers
                         }
 
                     }
-
+                    
                 }
+                Response.Flush();
+                Response.End();
                 #endregion
                 
             }
