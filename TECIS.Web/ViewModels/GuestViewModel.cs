@@ -25,6 +25,7 @@ namespace TECIS.Web.ViewModels
         public string Updates { get; set; }
         public string HowdidyouKnow { get; set; }
         public string PrayerComments { get; set; }
+        public string PrefModeofContact { get; set; }
         public bool SMSsent { get; set; }
         public string Createdby { get; set; }
         public DateTime WorshipDate { get; set; }

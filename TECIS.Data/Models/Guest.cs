@@ -45,6 +45,7 @@ namespace TECIS.Data.Models
         public Nullable<System.DateTime> timecaptured { get; set; }
         public string createdby { get; set; }
         public string Entrychannel { get; set; }
+        public string PrefContactMode { get; set; }
         //public bool Selected { get; set; }
         public bool SmsSent { get; set; }
         public Nullable<int> SmsResponse { get; set; }
@@ -57,6 +58,7 @@ namespace TECIS.Data.Models
         public virtual MaritalStat maritalstats { get; set; }
         public virtual ServicesType svctypes { get; set; }
         public virtual SmsResponse smserrors { get; set; }
+
         [NotMapped]
         public string EntrychannelOther { get; set; }
         [NotMapped]

@@ -18,11 +18,13 @@ using TECIS.Web.ViewModels;
 
 namespace TECIS.Web.Controllers
 {
+    [Authorize(Roles = "TeamLeader")]
     public class ReportsController : BaseController
     {
         private TecIsEntities db = new TecIsEntities();
 
         // GET: /Reports/
+        
         public ActionResult Index()
         {
             return View(db.ReportStats.ToList());

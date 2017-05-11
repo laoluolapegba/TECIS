@@ -75,7 +75,7 @@ namespace TECIS.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "Create")]
-        public ActionResult Create([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse")] Guest guest)
+        public ActionResult Create([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse,PrefContactMode")] Guest guest)
         {
             if (guest.ClusterArea == 0)
             {
@@ -117,7 +117,7 @@ namespace TECIS.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "CreateNNew")]
-        public ActionResult CreateNNew([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse")] Guest guest)
+        public ActionResult CreateNNew([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse,PrefContactMode")] Guest guest)
         {
             if(guest.ClusterArea == 0)
             {
@@ -182,7 +182,7 @@ namespace TECIS.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse")] Guest guest)
+        public ActionResult Edit([Bind(Include = "Id,Gender,agegroup,MaritalStat,Surname,OtherNames,PhoneNumber,EmailAddress,HomeAddress,NearestBStop,ClusterArea,  OfficeAdress,Occupation,flg_join,flg_membershipinfo,flg_moreinfo,PrayerComments,worshipdate,servicetype,timecaptured,createdby,Entrychannel,Selected,SmsSent,SmsResponse,PrefContactMode")] Guest guest)
         {
             if (ModelState.IsValid)
             {
@@ -280,7 +280,7 @@ namespace TECIS.Web.Controllers
             }
             return retval;
         }
-
+        [Authorize(Roles = "TeamLeader")]
         public ActionResult SendSMS(SMSObject model, string msisdn)
         {
 
@@ -305,6 +305,7 @@ namespace TECIS.Web.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "SendSMS")]
+        [Authorize(Roles = "TeamLeader")]
         public ActionResult SendSMS(SMSObject model)
         {
 
@@ -381,6 +382,7 @@ namespace TECIS.Web.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "TeamLeader")]
         public ActionResult GuestImport()
         {
             return View();
@@ -389,6 +391,7 @@ namespace TECIS.Web.Controllers
         //[HttpPost, HttpParamAction("ImportGuests"), ValidateAntiForgeryToken]
         [HttpPost, ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "ImportGuests")]
+        [Authorize(Roles = "TeamLeader")]
         public ActionResult ImportGuests(FormCollection collection)
         {
             
@@ -560,6 +563,7 @@ namespace TECIS.Web.Controllers
         }
         [HttpPost, ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "ExportGuests")]
+        [Authorize(Roles = "TeamLeader")]
         public void ExportGuests(FormCollection collection)
         {
             string exportoptions = collection["export-options"].ToString();
@@ -605,6 +609,7 @@ namespace TECIS.Web.Controllers
                 WouldJoin = d.answer.Description,
                 MemberShipInfo = d.answer1.Description,
                 Updates = d.answer2.Description,
+                PrefModeofContact = d.PrefContactMode,
                 HowdidyouKnow = d.Entrychannel,
                 PrayerComments = d.PrayerComments,
                 Createdby = d.createdby,
@@ -655,6 +660,7 @@ namespace TECIS.Web.Controllers
 
         [HttpPost, ValidateAntiForgeryToken]
         [MultipleButton(Name = "action", Argument = "ExportMyGuests")]
+        [Authorize(Roles = "TeamLeader")]
         public void ExportMyGuests(FormCollection collection)
         {
             string exportoptions = collection["export-options"].ToString();
@@ -736,6 +742,7 @@ namespace TECIS.Web.Controllers
                 WouldJoin = d.answer.Description,
                 MemberShipInfo = d.answer1.Description,
                 Updates = d.answer2.Description,
+                PrefModeofContact = d.PrefContactMode,
                 HowdidyouKnow = d.Entrychannel,
                 PrayerComments = d.PrayerComments,
                 Createdby = d.createdby,
