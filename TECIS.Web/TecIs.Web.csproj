@@ -1649,15 +1649,6 @@
     <Content Include="Scripts\plugins\video\responsible-video.js" />
     <Content Include="ReportView.aspx" />
     <Content Include="Views\Reports\WebForm1.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1957,15 +1948,6 @@
     <Content Include="Views\TecSchoolAttend\Maturity.cshtml" />
     <Content Include="Views\TecSchoolAttend\ImportTecSchAttend.cshtml" />
     <Content Include="Views\GuestContact\_CreateNew.cshtml" />
-    <Content Include="Web - Copy.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web - Copy.Debug.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
-    <Content Include="Web - Copy.Release.config">
-      <DependentUpon>Web - Copy.config</DependentUpon>
-    </Content>
     <Content Include="Views\UsersAdmin\Teamsboard.cshtml" />
     <Content Include="Views\Manage\_UpdateTeamLeader.cshtml" />
   </ItemGroup>
