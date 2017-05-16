@@ -22,6 +22,10 @@ using System.Web.Security;
 using System.Configuration;
 using System.Data.Entity.SqlServer;
 using TECIS.Data.ViewModels;
+using TECIS.Web.Helpers.CrossCutting.SMSService;
+using System.Threading.Tasks;
+using Elmah;
+
 namespace TECIS.Web.Controllers
 {
     public class GuestsController : BaseController
@@ -281,98 +285,138 @@ namespace TECIS.Web.Controllers
             return retval;
         }
         [Authorize(Roles = "TeamLeader")]
-        public ActionResult SendSMS(SMSObject model, string msisdn)
+        public ActionResult SendSMS()
         {
+            //var identity = ((CustomPrincipal)User).CustomIdentity;
+            // get the ids of everyone in my  team
+            var myteamuserIds = (from p in db.UserProfiles
+                                 where p.AdminConfirmed == 1
+                                 where p.TeamLeader == User.Identity.Name
+                                 select p.UserName).ToList();
+            DateTime _today = DateTime.Now.Date;
+            // Use the ids to retrieve the records for the selected people
+            // from the database:
+            var selectedRegisters = from x in db.Guests
+                                    where x.worshipdate == _today
+                                    where x.PhoneNumber != ""
+                                    where myteamuserIds.Contains(x.createdby)
 
-            if (Request["Selected"] != null)
+                                    select x;
+            List<string> recipients = new List<string>();
+            foreach (var item in selectedRegisters)
             {
-                foreach (var selection in Request["Selected"].Split(','))
-                {
-                    model.msisdn = model.msisdn + selection + ",";
-                }
-            }
-            else
+                recipients.Add(item.PhoneNumber);             
+                
+            };
+            var editorViewModel = new SMSObject()
             {
+                msisdn = string.Join(",", recipients.ToArray())
+            };
+            return View(editorViewModel);
 
-                Warning("Looks like you didn't select any guests. Please check your");
-                return RedirectToAction("Index");
-            }
+            //if (Request["Selected"] != null)
+            //{
+            //    foreach (var selection in Request["Selected"].Split(','))
+            //    {
+            //        model.msisdn = model.msisdn + selection + ",";
+            //    }
+            //}
+            //else
+            //{
+
+            //    Warning("Looks like you didn't select any guests. Please check your");
+            //    return RedirectToAction("Index");
+            //}
 
 
 
-            return View();
         }
 
-        [HttpPost, ValidateAntiForgeryToken]
-        [MultipleButton(Name = "action", Argument = "SendSMS")]
+        [HttpPost, ActionName("SendSMS"), ValidateAntiForgeryToken]
+        //[MultipleButton(Name = "action", Argument = "SendSMS")]
+        //[HttpPost, ActionName("Delete")]
         [Authorize(Roles = "TeamLeader")]
-        public ActionResult SendSMS(SMSObject model)
+        public async Task<ActionResult> SendSMS(SMSObject model)
         {
 
             try
             {
-                if (Request["Selected"] != null)
-                {
-                    model.msisdn = string.Empty;
-                    model.MessageId = string.Empty;
-                    foreach (var selection in Request["Selected"].Split(','))
-                    {
 
-                        try
-                        {
-                            model.MessageId = model.MessageId + int.Parse(selection) + ",";
-                            model.msisdn = model.msisdn + GetMsisdn(int.Parse(selection)) + ",";
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-                }
-                if (Request["Selected"] == null || model.msisdn == string.Empty)
-                {
-
-                    Warning("Looks like you didn't select any guests. Please check your form.");
-                    return RedirectToAction("Index");
-                }
-                model.SMSText = "SMS Text goes here";
                 if (ModelState.IsValid)
                 {
-                    //ViewBag.msisdn = model.msisdn;
-                    //ViewBag.SMSText = model.SMSText;
-                    string[] tmpMsisdn = model.msisdn.TrimEnd(',').Split(',');
-                    string[] tmpMsgId = model.MessageId.TrimEnd(',').Split(',');
-                    int i = 0; int isent = 0;
-                    foreach (var item in tmpMsisdn)
-                    {
-                        try
-                        {
-                            string tmp = "234" + item.Remove(0, 1);
-                            int MsgId = int.Parse(tmpMsgId[i]);
-                            i++;
-                            //recipients = recipients + tmp;
-                            //guests guests = db.guestss.Find(model.MessageId);
-                            int response = SMSGate(tmp, model.SMSText);
-                            if (response != 99)
-                            {
-                                UpdateStatus(MsgId, response);
-                                isent++;
-                            }
-
-                        }
-                        catch (Exception ex)
-                        { }
-                    }
-
-
-
-                    Success(string.Format("<b>{0}</b> Messages successfully sent .", isent), true);
-                    return RedirectToAction("Index");
+                    //List<string> recipients = new List<string>();
+                    String[] recipients = model.msisdn.Split(',');
+                    SMSLive247Service smssvc = new SMSLive247Service();
+                    await smssvc.SendSMSAsync(recipients, model.SMSText, model.SendConfirmation);
+                    Success(string.Format("<b>{0}</b> Messages successfully sent .", model.msisdn.Length), true);
                 }
+                #region Oldmethod
+                //if (Request["Selected"] != null)
+                //{
+                //    model.msisdn = string.Empty;
+                //    model.MessageId = string.Empty;
+                //    foreach (var selection in Request["Selected"].Split(','))
+                //    {
+
+                //        try
+                //        {
+                //            model.MessageId = model.MessageId + int.Parse(selection) + ",";
+                //            model.msisdn = model.msisdn + GetMsisdn(int.Parse(selection)) + ",";
+                //        }
+                //        catch (Exception ex)
+                //        { }
+                //    }
+                //}
+                //if (Request["Selected"] == null || model.msisdn == string.Empty)
+                //{
+
+                //    Warning("Looks like you didn't select any guests. Please check your form.");
+                //    return RedirectToAction("Index");
+                //}
+                //model.SMSText = "SMS Text goes here";
+                //if (ModelState.IsValid)
+                //{
+                //    //ViewBag.msisdn = model.msisdn;
+                //    //ViewBag.SMSText = model.SMSText;
+                //    string[] tmpMsisdn = model.msisdn.TrimEnd(',').Split(',');
+                //    string[] tmpMsgId = model.MessageId.TrimEnd(',').Split(',');
+                //    int i = 0; int isent = 0;
+                //    foreach (var item in tmpMsisdn)
+                //    {
+                //        try
+                //        {
+                //            string tmp = "234" + item.Remove(0, 1);
+                //            int MsgId = int.Parse(tmpMsgId[i]);
+                //            i++;
+                //            //recipients = recipients + tmp;
+                //            //guests guests = db.guestss.Find(model.MessageId);
+                //            int response = SMSGate(tmp, model.SMSText);
+                //            if (response != 99)
+                //            {
+                //                UpdateStatus(MsgId, response);
+                //                isent++;
+                //            }
+
+                //        }
+                //        catch (Exception ex)
+                //        { }
+                //    }
+
+
+
+                //    Success(string.Format("<b>{0}</b> Messages successfully sent .", isent), true);
+                //    return RedirectToAction("Index");
+
+                //}
+                #endregion
+
             }
             catch (Exception ex)
             {
+                ErrorSignal.FromCurrentContext().Raise(ex);
                 //ModelState.AddModelError("", "Unable to send action. Please contact us.");
                 Danger("Oops, something went wrong. Please retry and contact the admin guy.");
-                return RedirectToAction("Index", "Guests");
+                
             }
             return View(model);
 

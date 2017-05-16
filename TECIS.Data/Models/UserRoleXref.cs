@@ -3,7 +3,7 @@ namespace TECIS.Data.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("tecis.userrolexref")]
+    [Table("userrolexref")]
     public partial class UserRoleXref
     {
         [Key]

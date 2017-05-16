@@ -1,0 +1,64 @@
+﻿@model TECIS.Data.Models.UserProfile
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Add /Update Team Leader</h4>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-horizontal">
+
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.UserName, "Connect group", new { @class = "control-label col-md-2" })
+                @(Html.Kendo().ComboBox()
+                .Name("UserName")
+              .Placeholder("Select Cluster...")
+              .DataTextField("ClusterName")
+              .DataValueField("ClusterId")
+              .Filter(FilterType.Contains)
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetClusters", "Clusters");
+                  });
+              })
+                )
+            </div>*@
+            <div class="form-group">
+                 @Html.LabelFor(model => model.TeamLeader, "Team Leader", new { @class = "control-label col-md-2" })
+                  @(Html.Kendo().ComboBox()
+                .Name("TeamLeader")
+              .Placeholder("Select Team Lead...")
+              .HtmlAttributes(new { style = "width : 250px"})
+              .DataTextField("UserDesc")
+              .DataValueField("UserId")
+              .Filter(FilterType.Contains)
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetUsers", "UsersAdmin");
+                  });
+              })
+               )
+                </div>          
+          
+            @Html.HiddenFor(model =>model.Id)
+            
+
+        </div>
+    </div>
+        <div class="modal-footer">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn" type="button" data-dismiss="modal">Cancel</button>
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </div>
+}
+
+

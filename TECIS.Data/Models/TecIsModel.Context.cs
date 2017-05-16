@@ -45,7 +45,7 @@ namespace TECIS.Data.Models
         public virtual DbSet<RolePermXref> RolePermXrefs { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<UserRole> UserRole { get; set; }
-        public virtual DbSet<UserRoleXref> UserRoleXrefs { get; set; }
+        public virtual DbSet<UserRoleXref> UserRoleXrefs { get; set; } 
         public virtual DbSet<Notification> Notifications { get; set; }
         public virtual DbSet<Audit> Audits { get; set; }
 
@@ -120,32 +120,30 @@ namespace TECIS.Data.Models
                 .Property(e => e.createdby)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.UserId)
-                .IsUnicode(false);
+           
+
+            //modelBuilder.Entity<UserProfile>()
+            //    .Property(e => e.Cod_Password)
+            //    .IsUnicode(false);
+
+            //modelBuilder.Entity<UserProfile>()
+            //    .Property(e => e.PasswordSalt)
+            //    .IsUnicode(false);
+
+            //modelBuilder.Entity<UserProfile>()
+            //    .Property(e => e.MobilePin)
+            //    .IsUnicode(false);
+
+            //modelBuilder.Entity<UserProfile>()
+            //    .Property(e => e.PasswordQuestion)
+            //    .IsUnicode(false);
+
+            //modelBuilder.Entity<UserProfile>()
+            //    .Property(e => e.PasswordAnswer)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<UserProfile>()
-                .Property(e => e.Cod_Password)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.PasswordSalt)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.MobilePin)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.PasswordQuestion)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.PasswordAnswer)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<UserProfile>()
-                .Property(e => e.DisplayName)
+                .Property(e => e.UserName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserProfile>()
@@ -157,30 +155,30 @@ namespace TECIS.Data.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserProfile>()
-                .Property(e => e.EmailAddress)
+                .Property(e => e.Email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<UserRole>()
-                .Property(e => e.RoleName)
-                .IsUnicode(false);
+            //modelBuilder.Entity<UserRole>()
+            //    .Property(e => e.RoleName)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<UserRole>()
-                .Property(e => e.createdby)
-                .IsUnicode(false);
+            //modelBuilder.Entity<UserRole>()
+            //    .Property(e => e.createdby)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<UserRole>()
-                .Property(e => e.lastmodifiedby)
-                .IsUnicode(false);
+            //modelBuilder.Entity<UserRole>()
+            //    .Property(e => e.lastmodifiedby)
+            //    .IsUnicode(false);
 
-            modelBuilder.Entity<UserRole>()
-                .HasMany(e => e.RolePermXref)
-                .WithRequired(e => e.UserRole)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<UserRole>()
+            //    .HasMany(e => e.RolePermXref)
+            //    .WithRequired(e => e.UserRole)
+            //    .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<UserRole>()
-                .HasMany(e => e.UserRoleXref)
-                .WithRequired(e => e.UserRole)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<UserRole>()
+            //    .HasMany(e => e.UserRoleXref)
+            //    .WithRequired(e => e.UserRole)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<UserRoleXref>()
                 .Property(e => e.userid)

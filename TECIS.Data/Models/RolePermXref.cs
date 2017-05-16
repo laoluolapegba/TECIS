@@ -4,7 +4,7 @@ namespace TECIS.Data.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("tecis.rolepermxref")]
+    [Table("rolepermxref")]
     public partial class RolePermXref
     {
         [Key]

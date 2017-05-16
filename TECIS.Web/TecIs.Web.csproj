@@ -166,6 +166,10 @@
     <Reference Include="SendGridMail">
       <HintPath>..\packages\Sendgrid.6.3.0\lib\SendGridMail.dll</HintPath>
     </Reference>
+    <Reference Include="SMSServiceApi, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\SMSServiceApi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -173,6 +177,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.Cors">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
     </Reference>
@@ -207,6 +212,10 @@
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -289,6 +298,7 @@
     <Compile Include="Controllers\GuestContactController.cs" />
     <Compile Include="Controllers\TecSchoolAttendController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
+    <Compile Include="Helpers\CrossCutting\SMSService\SMSLive247Service.cs" />
     <Compile Include="Models\ReportBLL.cs" />
     <Compile Include="ViewModels\ReportRequestViewModel.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -998,7 +1008,7 @@
     <None Include="Properties\PublishProfiles\tecis.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
-    <Content Include="Images\1.jpg" />
+    <Content Include="Images\a1.jpg" />
     <Content Include="Images\a2.jpg" />
     <Content Include="Images\a3.jpg" />
     <Content Include="Images\a4.jpg" />
@@ -1007,6 +1017,7 @@
     <Content Include="Images\a7.jpg" />
     <Content Include="Images\a8.jpg" />
     <Content Include="Images\angular_logo.png" />
+    <Content Include="Images\avatar.png" />
     <Content Include="Images\dashbard4_1.jpg" />
     <Content Include="Images\dashbard4_2.jpg" />
     <Content Include="Images\elev.jpg" />
@@ -1955,6 +1966,8 @@
     <Content Include="Web - Copy.Release.config">
       <DependentUpon>Web - Copy.config</DependentUpon>
     </Content>
+    <Content Include="Views\UsersAdmin\Teamsboard.cshtml" />
+    <Content Include="Views\Manage\_UpdateTeamLeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TECIS.Data\TECIS.Data.csproj">

@@ -31,6 +31,7 @@ namespace TECIS.Web.Models
         public bool EmailConfirmed { get; set; }
         [Display(Name = "Confirmed by Admin")]
         public bool AdminConfirmed { get; set; }
+        public string TeamLeader { get; set; }
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }
 }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TECIS.Data.Identity;
+using TECIS.Data.Models;
 using TECIS.Web.Models;
 
 namespace TECIS.Web.Controllers
 {
     //[Authorize(Roles = "")]
-    [Authorize(Roles = "TeamLeader")]
+    [Authorize(Roles = "TeamLeader, DataAnalyst")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
@@ -166,7 +167,7 @@ namespace TECIS.Web.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Firstname,Lastname,EmailConfirmed,AdminConfirmed")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Firstname,Lastname,EmailConfirmed,AdminConfirmed,TeamLeader")] EditUserViewModel editUser, params string[] selectedRole)
         {
             //ModelStateErrors(ModelState);
             if (ModelState.IsValid)
@@ -183,6 +184,7 @@ namespace TECIS.Web.Controllers
                 user.Lastname = editUser.Lastname;
                 user.EmailConfirmed = editUser.EmailConfirmed;
                 user.AdminConfirmed = editUser.AdminConfirmed;
+                user.TeamLeader = editUser.TeamLeader;
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
                 selectedRole = selectedRole ?? new string[] { };
@@ -206,7 +208,26 @@ namespace TECIS.Web.Controllers
             ModelState.AddModelError("", "Something failed.");
             return View();
         }
+        public ActionResult GetUsers()
+        {
+            var db = new TecIsEntities();
+            var users = from UserProfile in db.UserProfiles.Where(c => c.AdminConfirmed == 1)
+                           select new
+                           {
+                               UserId = UserProfile.UserName,
+                               UserDesc = UserProfile.UserName
+                           };
 
+            //var clusters =
+            //    db.Clusters.Select(c => new { ClusterId = c.Id, ClusterName = c.ClusterName })
+
+            return Json(users.OrderBy(a => a.UserId), JsonRequestBehavior.AllowGet);
+        }
+        public static string GetUserTeamLeader(string userId)
+        {
+            var context = new TecIsEntities();
+            return context.UserProfiles.Where(a => a.Id == userId).FirstOrDefault().TeamLeader;
+        }
         //
         // GET: /Users/Delete/5
         public async Task<ActionResult> Delete(string id)

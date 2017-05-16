@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Threading.Tasks;
@@ -459,6 +460,27 @@ namespace TECIS.Web.Controllers
                 Avatar = db.Files.SingleOrDefault(s => s.UserId == userId)
             };
             return View(model);
+        }
+        public ActionResult UpdateTeamLeader()
+        {
+            //ViewBag.clusterid = new SelectList(db.Clusters, "Id", "ClusterName");
+            //ViewBag.theguestid = new SelectList(db.Guests, "Id", "Gender");
+            //ViewBag.GuestId 
+            UserProfile usermodel = new UserProfile();
+            usermodel.Id = User.Identity.GetUserId();
+            
+            return PartialView("_UpdateTeamLeader", usermodel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateTeamLeader(UserProfile profile)
+        {
+            var entity = db.UserProfiles.FirstOrDefault(a => a.Id == profile.Id);
+            entity.TeamLeader = profile.TeamLeader;
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+            string url = Url.Action("", "", new { id = profile.Id });
+            return Json(new { success = true, url = url });
         }
         protected override void Dispose(bool disposing)
         {

@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                @using (Html.BeginForm("SendSMS", "Guests"))  // new { id = Html.Encode(ViewContext.RouteData.Values["id"]) }
+                @using (Html.BeginForm("ExportGuests", "Guests"))  // new { id = Html.Encode(ViewContext.RouteData.Values["id"]) }
                 {   @Html.AntiForgeryToken()
                     
                     <div class="ibox-title">
@@ -39,10 +39,12 @@
                             <input type="radio" name="export-options" value="all-day" data-toggle="tooltip" data-placement="bottom" title="Export all transactions today" />All Today
                             <input type="radio" name="export-options" value="user-all" data-toggle="tooltip" data-placement="up" title="Export all my transactions" />All Mine
                             <input type="radio" name="export-options" value="user-day" checked data-toggle="tooltip" data-placement="right" title="Export only my transactions today" />Mine Today
+                            <input type="radio" name="export-options" value="team-day" checked data-toggle="tooltip" data-placement="right" title="Export only my team's guests today" />My Team Today
                             <input type="submit" value="Export  Guests" name="action:ExportGuests" class="btn btn-primary btn-xs" />     
                             <input type="submit" value="Convert to Member" name="action:ConverToMember" class="btn btn-primary btn-xs" />
-                            <input type="submit" value="Send SMS" name="action:SendSMS" class="btn btn-primary btn-xs" />
-                                                      
+                            
+                            
+                            @Html.ActionLink("Send SMS", "SendSMS", null, new { @class = "btn btn-primary btn-xs" })
                             @Html.ActionLink("Import Guests", "ImportGuests", null, new { @class = "btn btn-primary btn-xs" })
                             @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-xs" })
                             @Html.ActionLink("Recently Uploaded", "GuestUploadView", null, new { @class = "btn btn-primary btn-xs" })
@@ -105,9 +107,7 @@
                                             @Html.DisplayNameFor(model => model.EmailAddress)
                                         </th>
 
-                                        @*<th>
-                                            @Html.DisplayNameFor(model => model.ClusterArea)
-                                        </th>*@
+                                    
 
 
                                         @*<th>
@@ -163,10 +163,7 @@
                                                 @Html.DisplayFor(modelItem => item.EmailAddress)
                                             </td>
 
-                                            @*<td>
-                                                @Html.DisplayFor(modelItem => item.clusters.ClusterName)
-                                            </td>*@
-
+                                          
                                             @*<td>
                                 @Html.DisplayFor(modelItem => item.flg_join)
                             </td>
@@ -222,8 +219,7 @@
                                         <th>-</th>
                                         <th>-</th>
                                         <th>-</th>
-                                        <th>-</th>
-                                       
+                                                                              
                                         <th>-</th>
                                         <th>footer</th>
                                         <th>-</th>

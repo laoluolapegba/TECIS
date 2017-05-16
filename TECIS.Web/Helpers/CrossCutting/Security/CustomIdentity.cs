@@ -28,7 +28,7 @@ namespace TECIS.Web.Helpers.CrossCutting.Security
         //public int BranchId { get; set; }
         //public string BranchName { get; set; }
 
-        public int ProfileId { get; set; }
+        public string ProfileId { get; set; }
         #endregion
 
         #region Implementation of IIdentity

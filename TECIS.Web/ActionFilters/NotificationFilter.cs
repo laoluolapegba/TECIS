@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using TECIS.Data.Models;
 using TECIS.Data.ViewModels;
+using TECIS.Web.Controllers;
 
 namespace TECIS.Web.ActionFilters
 {
@@ -93,10 +94,13 @@ namespace TECIS.Web.ActionFilters
                 }
                 var userRoles = UserManager.GetRoles(user.Id);
                 filterContext.Controller.ViewBag.Rolename = userRoles[0];
+                filterContext.Controller.ViewBag.TeamLeader = UsersAdminController.GetUserTeamLeader(filterContext.HttpContext.User.Identity.GetUserId());
 
             }
 
 
         }
+        
+
     }
 }

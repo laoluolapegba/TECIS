@@ -17,20 +17,20 @@ namespace TECIS.Web.Helpers.CrossCutting.Security
 
         public string DisplayName { get; set; }
 
-        public int ProfileId { get; set; }
+        public string ProfileId { get; set; }
 
         #endregion
 
         public CustomMembershipUser(TECIS.Data.Models.UserProfile user)
-            : base("CustomMembershipProvider", user.UserId, user.ProfileId, user.EmailAddress, string.Empty, string.Empty, true, false,
+            : base("CustomMembershipProvider", user.UserName, user.Id, user.Email, string.Empty, string.Empty, true, false,
             (DateTime)user.CreatedDate, (DateTime)user.LastLoginDate, DateTime.Now, DateTime.Now, DateTime.Now)
         {
             FirstName = user.Firstname;
             LastName = user.Lastname;
-            UserRoleId = (int)user.RoleId;
-            UserRoleName = user.UserRole.RoleName;
+            //UserRoleId = (int)user.RoleId;
+            UserRoleName = user.UserRole.Name;
             DisplayName = user.DisplayName;
-            ProfileId = (int)user.ProfileId;
+            ProfileId = user.Id;
             //BranchId = 0; // (int)user.BRANCH_ID;
             //BranchName = user.CM_BRANCH.BRANCH_NAME;
 

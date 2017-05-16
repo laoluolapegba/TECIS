@@ -5,43 +5,43 @@ namespace TECIS.Data.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("tecis.userrole")]
+    [Table("aspnetroles")]
     public partial class UserRole
     {
         public UserRole()
         {
-            RolePermXref = new HashSet<RolePermXref>();
+            //RolePermXref = new HashSet<RolePermXref>();
             UserProfile = new HashSet<UserProfile>();
-            UserRoleXref = new HashSet<UserRoleXref>();
+            //UserRoleXref = new HashSet<UserRoleXref>();
         }
 
         [Key]
-        public int RoleID { get; set; }
+        public string Id { get; set; }
 
         [Required]
         [StringLength(120)]
-        public string RoleName { get; set; }
+        public string Name { get; set; }
 
-        public int? pswdlifedays { get; set; }
+        //public int? pswdlifedays { get; set; }
 
-        public int? userlevel { get; set; }
+        //public int? userlevel { get; set; }
 
-        [StringLength(20)]
-        public string createdby { get; set; }
+        //[StringLength(20)]
+        //public string createdby { get; set; }
 
-        public DateTime? createddate { get; set; }
+        //public DateTime? createddate { get; set; }
 
-        [StringLength(20)]
-        public string lastmodifiedby { get; set; }
+        //[StringLength(20)]
+        //public string lastmodifiedby { get; set; }
 
-        public DateTime? lastmodifieddate { get; set; }
+        //public DateTime? lastmodifieddate { get; set; }
 
-        public int? isdefault { get; set; }
+        //public int? isdefault { get; set; }
 
-        public virtual ICollection<RolePermXref> RolePermXref { get; set; }
+        //public virtual ICollection<RolePermXref> RolePermXref { get; set; }
 
         public virtual ICollection<UserProfile> UserProfile { get; set; }
 
-        public virtual ICollection<UserRoleXref> UserRoleXref { get; set; }
+        //public virtual ICollection<UserRoleXref> UserRoleXref { get; set; }
     }
 }

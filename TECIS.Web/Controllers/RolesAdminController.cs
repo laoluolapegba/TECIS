@@ -12,7 +12,7 @@ using TECIS.Web.Models;
 namespace TECIS.Web.Controllers
 {
     //[Authorize(Roles = "Data Manager")]
-    [Authorize(Roles = "TeamLeader")]
+   [Authorize(Roles = "TeamLeader, DataAnalyst")]
     public class RolesAdminController : Controller
     {
         public RolesAdminController()

@@ -15,6 +15,6 @@ namespace TECIS.Data.Models
         [DisplayName("SMS Recipients")]
         public string msisdn { get; set; }
         public int ReturnValue { get; set; }
-
+        public bool SendConfirmation { get; set; }
     }
 }

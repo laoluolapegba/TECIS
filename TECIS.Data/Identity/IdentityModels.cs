@@ -25,6 +25,7 @@ namespace TECIS.Data.Identity
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public bool AdminConfirmed { get; set; }
+        public string TeamLeader { get; set; }
         //public virtual ICollection<File> Files { get; set; }
     }
     public class ApplicationRole : IdentityRole

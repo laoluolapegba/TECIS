@@ -4,70 +4,125 @@
     ViewBag.Title = "SendSMS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Send SMS <small>for my Team</small></h5>
+                        
+                        <div class="ibox-tools">
+                            @*<input onblur="textCounter(this.form.SMSText, this, 160);" disabled onfocus="    this.blur();" 
+                                   tabindex="999" maxlength="3" size="3" value="160" name="counter">*@
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a href="#">Config option 1</a>
+                                </li>
+                                <li>
+                                    <a href="#">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-sm-8 b-r">
+                                @using (Html.BeginForm("SendSMS", "Guests", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Short Message</label>
 
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-sm-4">
-        <h2>SendSMS</h2>
-        <ol class="breadcrumb">
-            <li>
-                @Html.ActionLink("List", "Index")
-            </li>
-            <li class="active">
-                <strong>SendSMS</strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-sm-8">
-        <div class="title-action">
-            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
+                                        <div class="col-lg-9">
+                                           
+                                          @Html.TextAreaFor(model => model.SMSText, new { @class = "k-textbox", style = "width: 100%;" })
+    @*<textarea onblur="textCounter(this,this.form.counter,160);" onkeyup="textCounter(this,this.form.counter,160);"
+    style="width: 100%;" name="SMSText" id="SMSText" class="k-textbox"></textarea>*@
+                                            @Html.ValidationMessageFor(model => model.SMSText, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Phone Numbers</label>
+
+                                        <div class="col-lg-9">
+                                            
+                                            @Html.TextAreaFor(model => model.msisdn, new { @class = "k-textbox", style = "width: 100%;" })                                           
+                                            @*@Html.TextAreaFor(model => model.msisdn, new { htmlAttributes = new { @class = "form-control" } })*@
+                                            @Html.ValidationMessageFor(model => model.msisdn, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-3 col-lg-9">
+                                            <div class="checkbox i-checks"><label> <input type="checkbox" id="SendConfirmation"><i></i> Send me a confirmation </label></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-3 col-lg-9">
+                                            <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit" name="action:SensMS">Send</button>
+                                        </div>
+                                    </div>
+                                    @*<div>
+                                        <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><strong>Send</strong></button>
+                                        <label> <input type="checkbox" class="i-checks">Send me a confirmation </label>
+                                    </div>*@
+                                }
+                                </div>
+                            <div class="col-sm-4">
+                                <p>
+                                    The list of phone numbers contains only phone numbers of guests who were entered on the current date
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+            
         </div>
-    </div>
-</div>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Send Message to Guests</h4>
-        <hr />
         
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.SMSText, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.SMSText, new { htmlAttributes = new { @class = "form-control" }, @row = 5 })
-                @Html.ValidationMessageFor(model => model.SMSText, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.msisdn, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.msisdn, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.msisdn, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-           
-            <div class="col-md-10">
-                @Html.HiddenFor(model => model.MessageId, new { htmlAttributes = new { @class = "form-control" } })
-               
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                
-                    <button class="btn btn-primary" title="SendSMS" type="submit" id="sendsms">
-                        <i class="fa fa-envelope"> Send </i>
-                    </button>
-                </div>
-        </div>
     </div>
-}
 
+@section Styles {
+    @Styles.Render("~/Content/plugins/iCheck/iCheckStyles")
+}
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/plugins/iCheck")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+        function textCounter(field, countfield, maxlimit) {
+            if (field.value.length > maxlimit) {
+                field.value = field.value.substring(0, maxlimit);
+                field.blur();
+                field.focus();
+                return false;
+            } else {
+                countfield.value = maxlimit - field.value.length;
+            }
+        }
+    </script>
 }
+

@@ -7,6 +7,14 @@
 @{
     ViewBag.Title = "Profile";
 }
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-lg-10">
@@ -62,11 +70,15 @@
                                             <div>
                                                 <h2 class="no-margins">
                                                     <strong class="font-bold">@string.Format("{0} {1}", ViewBag.userfirstname, ViewBag.userlastname) </strong>
+                                                   
                                                 </h2>
                                                 <h4>@ViewBag.Rolenameme</h4>
                                                 <small>
-                                                    Profile Info 2 sentences.
+                                                    TeamLeader: @ViewBag.TeamLeader
                                                 </small>
+                                                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Update Team Leader", "UpdateTeamLeader", "Manage", htmlAttributes: new { data_modal = "", @class = "btn btn-primary" })
+
+
                                             </div>
                                         </div>
                                         <div>
@@ -79,6 +91,7 @@
                                             <div>
                                                 <input type="submit" value="Upload" class="btn btn-default" />
                                             </div>
+                                            
                                         </div>
 
 
@@ -124,72 +137,13 @@
 
 
                             </div>
-    <div class="ibox float-e-margins">
-        <div class="ibox-title  back-change">
-            <h5>Avatar cropper <small> link</small></h5>
-            <div class="ibox-tools">
-                <a class="collapse-link">
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wrench"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-user">
-                    <li>
-                        <a href="#">Config option 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Config option 2</a>
-                    </li>
-                </ul>
-                <a class="close-link">
-                    <i class="fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        <div class="ibox-content">
-            <p>
-                Crop your avatar.
-            </p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="image-crop">
-                        <img src="~/Images/p3.jpg">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <h4>Preview image</h4>
-                    <div class="img-preview img-preview-sm"></div>
-                    <h4>Comon method</h4>
-                    <p>
-                        You can upload new image to crop container and easy download new cropped image.
-                    </p>
-                    <div class="btn-group">
-                        <label title="Upload image file" for="inputImage" class="btn btn-primary">
-                            <input type="file" accept="image/*" name="file" id="inputImage" class="hide">
-                            Upload new image
-                        </label>
-                        <label title="Download image" id="download" class="btn btn-primary">Download</label>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <button class="btn btn-white" id="zoomIn" type="button">Zoom In</button>
-                        <button class="btn btn-white" id="zoomOut" type="button">Zoom Out</button>
-                        <button class="btn btn-white" id="rotateLeft" type="button">Rotate Left</button>
-                        <button class="btn btn-white" id="rotateRight" type="button">Rotate Right</button>
-                        <button class="btn btn-warning" id="setDrag" type="button">New crop</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-                            <div class="row">
 
+                            <div class="row">
                                 <div class="col-lg-3">
 
                                     <div class="ibox">
                                         <div class="ibox-content">
-                                            <h3>About @string.Format("{0} {1}", "Name", "Surname")</h3>
+                                            <h3>About @string.Format("{0}", User.Identity.Name)</h3>
 
                                             <p class="small">
                                                 Holistically utilize competitive e-markets through intermandated meta-services. Objectively.
@@ -200,272 +154,76 @@
 
                                             <p class="small font-bold">
                                                 <span><i class="fa fa-circle text-navy"></i> Online status</span>
+                                                 
+                                                @*@Html.ActionLink("Update Team Leader", "TeamLeader", null, new { @class = "btn btn-primary btn-xs" })*@
                                             </p>
-
+                                            
                                         </div>
                                     </div>
-
-                                    <div class="ibox">
-                                        <div class="ibox-content">
-                                            <h3>Personal friends</h3>
-                                            <ul class="list-unstyled file-list">
-                                                <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
-                                                <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
-                                                <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
-                                                <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
-                                                <li><a href=""><i class="fa fa-file-powerpoint-o"></i> Presentation.pptx</a></li>
-                                                <li><a href=""><i class="fa fa-file"></i> 10_08_2015.docx</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="ibox">
-                                        <div class="ibox-content">
-                                            <h3>Private message</h3>
-
-                                            <p class="small">
-                                                Send private message to Seun Sokeye
-                                            </p>
-
-                                            <div class="form-group">
-                                                <label>Subject</label>
-                                                <input type="email" class="form-control" placeholder="Message subject">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Message</label>
-                                                <textarea class="form-control" placeholder="Your message" rows="3"></textarea>
-                                            </div>
-                                            <button class="btn btn-primary btn-block">Send</button>
-
-                                        </div>
-                                    </div>
-
                                 </div>
 
-                                <div class="col-lg-5">
-
-                                    <div class="social-feed-box">
-
-                                        <div class="pull-right social-action dropdown">
-                                            <button data-toggle="dropdown" class="dropdown-toggle btn-white">
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu m-t-xs">
-                                                <li><a href="#">Config</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="social-avatar">
-                                            <a href="" class="pull-left">
-                                                <img alt="image" src="~/Images/a1.jpg">
-                                            </a>
-                                            <div class="media-body">
-                                                <a href="#">
-                                                    Andrew Williams
-                                                </a>
-                                                <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                                            </div>
-                                        </div>
-                                        <div class="social-body">
-                                            <p>
-                                                Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                                                default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                                                in their infancy. Packages and web page editors now use Lorem Ipsum as their
-                                                default model text.
-                                            </p>
-
-                                            <div class="btn-group">
-                                                <button class="btn btn-white btn-xs"><i class="fa fa-thumbs-up"></i> Like this!</button>
-                                                <button class="btn btn-white btn-xs"><i class="fa fa-comments"></i> Comment</button>
-                                                <button class="btn btn-white btn-xs"><i class="fa fa-share"></i> Share</button>
-                                            </div>
-                                        </div>
-                                        <div class="social-footer">
-                                            <div class="social-comment">
-                                                <a href="" class="pull-left">
-                                                    <img alt="image" src="~/Images/a1.jpg">
-                                                </a>
-                                                <div class="media-body">
-                                                    <a href="#">
-                                                        Andrew Williams
-                                                    </a>
-                                                    Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words.
-                                                    <br />
-                                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 26 Like this!</a> -
-                                                    <small class="text-muted">12.06.2014</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="social-comment">
-                                                <a href="" class="pull-left">
-                                                    <img alt="image" src="~/Images/a2.jpg">
-                                                </a>
-                                                <div class="media-body">
-                                                    <a href="#">
-                                                        Andrew Williams
-                                                    </a>
-                                                    Making this the first true generator on the Internet. It uses a dictionary of.
-                                                    <br />
-                                                    <a href="#" class="small"><i class="fa fa-thumbs-up"></i> 11 Like this!</a> -
-                                                    <small class="text-muted">10.07.2014</small>
-                                                </div>
-                                            </div>
-
-                                            <div class="social-comment">
-                                                <a href="" class="pull-left">
-                                                    <img alt="image" src="~/Images/a3.jpg">
-                                                </a>
-                                                <div class="media-body">
-                                                    <textarea class="form-control" placeholder="Write comment..."></textarea>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-
-
-
-
-
-                                </div>
-                                <div class="col-lg-4 m-b-lg">
-                                    <div id="vertical-timeline" class="vertical-container light-timeline no-margins">
-                                        <div class="vertical-timeline-block">
-                                            <div class="vertical-timeline-icon navy-bg">
-                                                <i class="fa fa-briefcase"></i>
-                                            </div>
-
-                                            <div class="vertical-timeline-content">
-                                                <h2>Meeting</h2>
-                                                <p>
-                                                    Conference on the sales results for the previous year. Monica please examine sales trends in marketing and products. Below please find the current status of the sale.
-                                                </p>
-                                                <a href="#" class="btn btn-sm btn-primary"> More info</a>
-                                                <span class="vertical-date">
-                                                    Today <br>
-                                                    <small>Dec 24</small>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="vertical-timeline-block">
-                                            <div class="vertical-timeline-icon blue-bg">
-                                                <i class="fa fa-file-text"></i>
-                                            </div>
-
-                                            <div class="vertical-timeline-content">
-                                                <h2>Send documents to Mike</h2>
-                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since.</p>
-                                                <a href="#" class="btn btn-sm btn-success"> Download document </a>
-                                                <span class="vertical-date">
-                                                    Today <br>
-                                                    <small>Dec 24</small>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="vertical-timeline-block">
-                                            <div class="vertical-timeline-icon lazur-bg">
-                                                <i class="fa fa-coffee"></i>
-                                            </div>
-
-                                            <div class="vertical-timeline-content">
-                                                <h2>Coffee Break</h2>
-                                                <p>Go to shop and find some products. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's. </p>
-                                                <a href="#" class="btn btn-sm btn-info">Read more</a>
-                                                <span class="vertical-date"> Yesterday <br><small>Dec 23</small></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="vertical-timeline-block">
-                                            <div class="vertical-timeline-icon yellow-bg">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-
-                                            <div class="vertical-timeline-content">
-                                                <h2>Phone with Jeronimo</h2>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-                                                <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="vertical-timeline-block">
-                                            <div class="vertical-timeline-icon navy-bg">
-                                                <i class="fa fa-comments"></i>
-                                            </div>
-
-                                            <div class="vertical-timeline-content">
-                                                <h2>Chat with Monica and Sandra</h2>
-                                                <p>Web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
-                                                <span class="vertical-date">Yesterday <br><small>Dec 23</small></span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                            </div>
+                            
+                        }
+                     </div>
                             </div>
                         }
-                    </div>
-                </div>
-            }
 
-            <div id="tab-alerts" class="tab-pane">
-                <div class="panel-body">
+                        <div id="tab-alerts" class="tab-pane">
+                            <div class="panel-body">
 
 
-                    <div class="row">
+                                <div class="row">
 
-                        <div class="ibox float-e-margins">
-                            <div class="ibox-title">
-                                <h5> Alerts</h5>
-                                <div class="ibox-tools">
-                                    <a class="collapse-link">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </a>
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-wrench"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li>
-                                            <a href="#">Config option 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Config option 2</a>
-                                        </li>
-                                    </ul>
-                                    <a class="close-link">
-                                        <i class="fa fa-times"></i>
-                                    </a>
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-title">
+                                            <h5> Alerts</h5>
+                                            <div class="ibox-tools">
+                                                <a class="collapse-link">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                </a>
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                    <i class="fa fa-wrench"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-user">
+                                                    <li>
+                                                        <a href="#">Config option 1</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Config option 2</a>
+                                                    </li>
+                                                </ul>
+                                                <a class="close-link">
+                                                    <i class="fa fa-times"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="ibox-content">
+                                            @Html.Partial("_RenderAlerts", ViewBag.NotificationList as IEnumerable<TECIS.Data.Models.Notification>)
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-default print-btn"><i class="fa fa-print" onclick="print()"></i> Print</button>
+
+
                                 </div>
                             </div>
-                            <div class="ibox-content">
-                                @Html.Partial("_RenderAlerts", ViewBag.NotificationList as IEnumerable<TECIS.Data.Models.Notification>)
+                        </div>
+
+                        <div id="tab-messages" class="tab-pane">
+                            <div class="panel-body">
+                                @Html.Partial("_RenderNotifications", ViewBag.NotificationList as IEnumerable<TECIS.Data.Models.Notification>)
                             </div>
                         </div>
-                        <button class="btn btn-default print-btn"><i class="fa fa-print" onclick="print()"></i> Print</button>
-
-
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab-messages" class="tab-pane">
-                <div class="panel-body">
-                    @Html.Partial("_RenderNotifications", ViewBag.NotificationList as IEnumerable<TECIS.Data.Models.Notification>)
-                </div>
-            </div>
-            <div id="tab-manage" class="tab-pane">
-                <div class="panel-body">
-                    <div>
-                        <h4>Change your account settings</h4>
-                        <hr />
-                        <dl class="dl-horizontal">
-                            <dt>Password:</dt>
-                            <dd>
-                                [
-                                @if (Model.HasPassword)
+                        <div id="tab-manage" class="tab-pane">
+                            <div class="panel-body">
+                                <div>
+                                    <h4>Change your account settings</h4>
+                                    <hr />
+                                    <dl class="dl-horizontal">
+                                        <dt>Password:</dt>
+                                        <dd>
+                                            [
+                                            @if (Model.HasPassword)
                                 {
                                 @Html.ActionLink("Change your password", "ChangePassword")
                                 }
@@ -473,70 +231,70 @@
                                 {
                                 @Html.ActionLink("Create", "SetPassword")
                                 }
+                                            ]
+                                        </dd>
+                                        <dt>External Logins:</dt>
+                                        <dd>
+                                            @Model.Logins.Count [
+                                            @Html.ActionLink("Manage", "ManageLogins") ]
+                                        </dd>
+                                        @*
+                            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
+
+                             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
+
+                             Uncomment the following block after you have set up two-factor authentication
+                                        *@
+                                        @*
+                            <dt>Phone Number:</dt>
+                            <dd>
+                                @(Model.PhoneNumber ?? "None") [
+                                @if (Model.PhoneNumber != null)
+                                {
+                                    @Html.ActionLink("Change", "AddPhoneNumber")
+                                    @: &nbsp;|&nbsp;
+                                    @Html.ActionLink("Remove", "RemovePhoneNumber")
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Add", "AddPhoneNumber")
+                                }
                                 ]
                             </dd>
-                            <dt>External Logins:</dt>
-                            <dd>
-                                @Model.Logins.Count [
-                                @Html.ActionLink("Manage", "ManageLogins") ]
-                            </dd>
-                            @*
-                                Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-
-                                 See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                                    for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-
-                                 Uncomment the following block after you have set up two-factor authentication
-                            *@
-                            @*
-                                <dt>Phone Number:</dt>
-                                <dd>
-                                    @(Model.PhoneNumber ?? "None") [
-                                    @if (Model.PhoneNumber != null)
+                                        *@
+                                        <dt>Two-Factor Authentication:</dt>
+                                        <dd>
+                                            <p>
+                                                There are no two-factor authentication providers configured. @*See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                                    for details on setting up this ASP.NET application to support two-factor authentication.*@
+                                            </p>
+                                            @*@if (Model.TwoFactor)
+                                {
+                                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
-                                        @Html.ActionLink("Change", "AddPhoneNumber")
-                                        @: &nbsp;|&nbsp;
-                                        @Html.ActionLink("Remove", "RemovePhoneNumber")
+                                        @Html.AntiForgeryToken()
+                                        <text>Enabled
+                                        <input type="submit" value="Disable" class="btn btn-link" />
+                                        </text>
                                     }
-                                    else
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                     {
-                                        @Html.ActionLink("Add", "AddPhoneNumber")
+                                        @Html.AntiForgeryToken()
+                                        <text>Disabled
+                                        <input type="submit" value="Enable" class="btn btn-link" />
+                                        </text>
                                     }
-                                    ]
-                                </dd>
-                            *@
-                            <dt>Two-Factor Authentication:</dt>
-                            <dd>
-                                <p>
-                                    There are no two-factor authentication providers configured. @*See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                                        for details on setting up this ASP.NET application to support two-factor authentication.*@
-                                </p>
-                                @*@if (Model.TwoFactor)
-                                    {
-                                        using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <text>Enabled
-                                            <input type="submit" value="Disable" class="btn btn-link" />
-                                            </text>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                        {
-                                            @Html.AntiForgeryToken()
-                                            <text>Disabled
-                                            <input type="submit" value="Enable" class="btn btn-link" />
-                                            </text>
-                                        }
-                                    }*@
-                            </dd>
-                        </dl>
+                                }*@
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -558,6 +316,8 @@
 @section Scripts {
     @Scripts.Render("~/plugins/sparkLine")
     @Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/modalform")
+
     @Scripts.Render("~/plugins/imagecropper")
     @{ Html.RenderPartial("_RenderNotifications.js"); }
 

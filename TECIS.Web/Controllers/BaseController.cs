@@ -3,7 +3,9 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using TECIS.Data.Models;
 using TECIS.Web.Helpers.UI;
+using System.Linq;
 namespace TECIS.Web.Controllers
 {
     public class BaseController : Controller
@@ -67,6 +69,7 @@ namespace TECIS.Web.Controllers
                 _roleManager = value;
             }
         }
+
         protected override ViewResult View(IView view, object model)
         {
             //if (Request.IsAuthenticated)
@@ -76,9 +79,11 @@ namespace TECIS.Web.Controllers
                 ViewBag.userlastname = user.Lastname;
                 var userRoles = UserManager.GetRoles(user.Id);
                 ViewBag.Rolename = userRoles[0];
+                
             //}
 
             return base.View(view, model);
         }
+        
     }
 }

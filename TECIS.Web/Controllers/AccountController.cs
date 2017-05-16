@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -228,7 +229,7 @@ namespace TECIS.Web.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, "Data Analyst");
+                    await UserManager.AddToRoleAsync(user.Id, ConfigurationManager.AppSettings["DefaultRole"]);
                     //  Comment the following line to prevent log in until the user is confirmed.
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     string callbackUrl = await SendEmailConfirmationTokenAsync(user.Id, "Please verify your account");

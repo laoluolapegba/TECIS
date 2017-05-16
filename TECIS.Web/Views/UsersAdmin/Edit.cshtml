@@ -77,6 +77,24 @@
                             </div>
                             </div>
                             <div class="form-group">
+                                @Html.LabelFor(model => model.TeamLeader, "Team Leader", new { @class = "control-label col-md-2" })
+                                @(Html.Kendo().ComboBox()
+                                    .Name("TeamLeader")
+                                  .Placeholder("Select Team Lead...")
+                                  .HtmlAttributes(new { style = "width : 250px" })
+                                  .DataTextField("UserDesc")
+                                  .DataValueField("UserId")
+                                  .Filter(FilterType.Contains)
+                                  .DataSource(source =>
+                                  {
+                                      source.Read(read =>
+                                      {
+                                          read.Action("GetUsers", "UsersAdmin");
+                                      });
+                                  })
+                                                    )
+                            </div>
+                            <div class="form-group">
                                 @Html.Label("Roles", new { @class = "control-label col-md-2" })
                                 <span class=" col-md-10">
                                     @foreach (var item in Model.RolesList)

@@ -71,7 +71,7 @@ namespace TECIS.Web.Helpers.CrossCutting.Security
             using (var context = new TecIsEntities())
             {
                 var user = (from u in context.UserProfiles.Include(usr => usr.UserRole)
-                            where String.Compare(u.UserId, username, StringComparison.OrdinalIgnoreCase) == 0
+                            where String.Compare(u.UserName, username, StringComparison.OrdinalIgnoreCase) == 0
                             select u).FirstOrDefault();
 
                 if (user != null)

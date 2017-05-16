@@ -55,11 +55,11 @@ namespace TECIS.Web.Helpers.CrossCutting.Security
             using (var context = new TecIsEntities())
             {
                 var user = (from u in context.UserProfiles
-                            where String.Compare(u.UserId, username, StringComparison.OrdinalIgnoreCase) == 0
+                            where String.Compare(u.UserName, username, StringComparison.OrdinalIgnoreCase) == 0
 
                             //&& !u.Deleted
                             select u).FirstOrDefault();
-                if (!pwdManager.IsPasswordMatch(password, user.PasswordSalt, user.Cod_Password))
+                if (!pwdManager.IsPasswordMatch(password, user.PasswordSalt, user.PasswordHash))
                 {
                     user = null;
                 }
@@ -84,7 +84,7 @@ namespace TECIS.Web.Helpers.CrossCutting.Security
             using (var context = new TecIsEntities())
             {
                 var user = (from u in context.UserProfiles.Include(usr => usr.UserRole)
-                            where String.Compare(u.UserId, username, StringComparison.OrdinalIgnoreCase) == 0
+                            where String.Compare(u.UserName, username, StringComparison.OrdinalIgnoreCase) == 0
                             //&& !u.Deleted
                             select u).FirstOrDefault();
 

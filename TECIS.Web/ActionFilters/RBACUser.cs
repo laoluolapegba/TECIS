@@ -5,7 +5,7 @@ using System.Linq;
 
 public class RBACUser
 {
-    public int Profile_Id { get; set; }
+    public string Profile_Id { get; set; }
     public bool IsSysAdmin { get; set; }
     public string UserId { get; set; }
     private List<UserRole> Roles = new List<UserRole>();
@@ -21,16 +21,17 @@ public class RBACUser
     {
         using (TecIsEntities _data = new TecIsEntities())
         {
-            UserProfile _user = _data.UserProfiles.Where(u => u.UserId == this.UserId).FirstOrDefault();
+            UserProfile _user = _data.UserProfiles.Where(u => u.UserName == this.UserId).FirstOrDefault();
             if (_user != null)
             {
-                this.Profile_Id = (int)_user.ProfileId;
+                this.Profile_Id = _user.Id;
                 TECIS.Data.Models.UserRole _role = _user.UserRole;
-                UserRole _userRole = new UserRole { Role_Id = _role.RoleID, RoleName = _role.RoleName };
-                foreach (RolePermXref _permission in _role.RolePermXref)
-                {
-                    _userRole.Permissions.Add(new RolePermission { Permission_Id = (int)_permission.Permission.PermissionId, PermissionDescription = _permission.Permission.PermissionDescription });
-                }
+                UserRole _userRole = new UserRole { Role_Id = _role.Id, RoleName = _role.Name };
+                //temporarily removed 13may2017
+                //foreach (RolePermXref _permission in _role.RolePermXref)
+                //{
+                //    _userRole.Permissions.Add(new RolePermission { Permission_Id = (int)_permission.Permission.PermissionId, PermissionDescription = _permission.Permission.PermissionDescription });
+                //}
 
                 //foreach (TECIS.Data.Models.UserRole _role in _user.UserRole)
                 //{
@@ -88,7 +89,7 @@ public class RBACUser
 
 public class UserRole
 {
-    public int Role_Id { get; set; }
+    public string Role_Id { get; set; }
     public string RoleName { get; set; }
     public List<RolePermission> Permissions = new List<RolePermission>();
 }

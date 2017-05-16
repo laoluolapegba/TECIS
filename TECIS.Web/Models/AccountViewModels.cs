@@ -93,6 +93,8 @@ namespace TECIS.Web.Models
         [StringLength(20)]
         public string Lastname { get; set; }
 
+       
+
     }
 
     public class ResetPasswordViewModel
