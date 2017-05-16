@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
+bin
+obj
 
 # Build results
 [Dd]ebug/
@@ -187,3 +189,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/TECIS.Web/exceptions
+/TECIS.Web/Web.config	
