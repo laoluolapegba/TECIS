@@ -191,3 +191,5 @@ _Pvt_Extensions/
 ModelManifest.xml
 /TECIS.Web/exceptions
 /TECIS.Web/Web.config
+/TECIS.Web/Web.Debug.config
+/TECIS.Web/Web.Release.config
