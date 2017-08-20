@@ -402,11 +402,6 @@
     <Content Include="Content\ico\favicon-32x32.png" />
     <Content Include="Content\ico\favicon-96x96.png" />
     <Content Include="Content\ico\favicon.ico" />
-    <Content Include="Content\ico\favicon.png" />
-    <Content Include="Content\ico\kingadmin-favicon114x114.png" />
-    <Content Include="Content\ico\kingadmin-favicon144x144.png" />
-    <Content Include="Content\ico\kingadmin-favicon57x57.png" />
-    <Content Include="Content\ico\kingadmin-favicon72x72.png" />
     <Content Include="Content\ico\ms-icon-144x144.png" />
     <Content Include="Content\ico\ms-icon-150x150.png" />
     <Content Include="Content\ico\ms-icon-310x310.png" />
@@ -1953,6 +1948,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Account\Login_2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

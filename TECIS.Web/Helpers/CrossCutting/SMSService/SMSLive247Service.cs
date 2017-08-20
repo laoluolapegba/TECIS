@@ -22,7 +22,7 @@ namespace TECIS.Web.Helpers.CrossCutting.SMSService
             myMessage.Message = shortmessage;
 
             //.From = new System.Net.Mail.MailAddress(
-            //    ConfigurationManager.AppSettings["mailSender"],
+            //    ConfigurationManager.AppSettings["mailSender"], 
             //           ConfigurationManager.AppSettings["maildisplayName"]);
 
 

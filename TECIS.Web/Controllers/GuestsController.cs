@@ -348,7 +348,8 @@ namespace TECIS.Web.Controllers
                     String[] recipients = model.msisdn.Split(',');
                     SMSLive247Service smssvc = new SMSLive247Service();
                     await smssvc.SendSMSAsync(recipients, model.SMSText, model.SendConfirmation);
-                    Success(string.Format("<b>{0}</b> Messages successfully sent .", model.msisdn.Length), true);
+                    //Success(string.Format("<b>{0}</b> Messages successfully sent .", model.msisdn.Length), true);
+                    Success(string.Format("Messages successfully sent."), true);
                 }
                 #region Oldmethod
                 //if (Request["Selected"] != null)
@@ -626,6 +627,24 @@ namespace TECIS.Web.Controllers
                 query = query.Where(g => g.createdby == User.Identity.Name &&  g.worshipdate.Year == today.Year &&
                              g.worshipdate.Month == today.Month &&
                              g.worshipdate.Day == today.Day);
+            else if(exportoptions == "team-day")
+            {
+                var myteamuserIds = (from p in db.UserProfiles
+                                     where p.AdminConfirmed == 1
+                                     where p.TeamLeader == User.Identity.Name
+                                     select p.UserName).ToList();
+                DateTime _today = DateTime.Now.Date;
+                // Use the ids to retrieve the records for the selected people
+                // from the database:
+                //var selectedRegisters = from x in db.Guests
+                //                        where x.worshipdate == _today
+                //                        where x.PhoneNumber != ""
+                //                        where myteamuserIds.Contains(x.createdby)
+                //                        select x;
+                query = query.Where(g => g.worshipdate.Year == today.Year &&
+                             g.worshipdate.Month == today.Month &&
+                             g.worshipdate.Day == today.Day).Where(a =>a.PhoneNumber != "").Where(x => myteamuserIds.Contains(x.createdby));
+            }
 
    //         var xquery =
    //(from guests in db.Guests

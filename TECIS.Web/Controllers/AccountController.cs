@@ -61,7 +61,12 @@ namespace TECIS.Web.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
+        [AllowAnonymous]
+        public ActionResult Login_2(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
         //
         // POST: /Account/Login
         [HttpPost]
@@ -86,7 +91,7 @@ namespace TECIS.Web.Controllers
                 }
                 if (!IsAdminConfirmed(model.Email))
                 {
-                    ViewBag.errorMessage = "Your account must be confirmed by the an administrator. "
+                    ViewBag.errorMessage = "Your account must be confirmed by the administrator or a team leader "
                               + "The administrator has been notified.";
                     return View("Error");
                 }

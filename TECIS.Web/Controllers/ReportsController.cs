@@ -110,8 +110,9 @@ namespace TECIS.Web.Controllers
                                     OfficeAddress = d.OfficeAdress,
                                     Occupation = d.Occupation,
                                     WouldJoin = d.answer.Description,
-                                    MemberShipInfo = d.answer1.Description,
+                                    //MemberShipInfo = d.answer1.Description,
                                     Updates = d.answer2.Description,
+                                    PrefModeofContact = d.PrefContactMode,
                                     HowdidyouKnow = d.Entrychannel,
                                     PrayerComments = d.PrayerComments,
                                     Createdby = d.createdby,
@@ -150,7 +151,7 @@ namespace TECIS.Web.Controllers
                                 MailAddress to = new MailAddress(item.ClusterLeader);
                                 MailMessage msg = new MailMessage(from, to);
                                 var sb = new System.Text.StringBuilder(137);
-                                sb.AppendLine(@"Dear Leaders").Append(Environment.NewLine);
+                                sb.AppendLine(@"Dear Leader,").Append(Environment.NewLine);
                                 sb.AppendLine(@"Please find attached guest list from your area for today's service").Append(Environment.NewLine);
                                 sb.AppendLine(@"Kindly get in touch with them").Append(Environment.NewLine);
                                 sb.AppendLine(@"Regards.");
@@ -238,8 +239,9 @@ namespace TECIS.Web.Controllers
                                 OfficeAddress = d.OfficeAdress,
                                 Occupation = d.Occupation,
                                 WouldJoin = d.answer.Description,
-                                MemberShipInfo = d.answer1.Description,
+                                //MemberShipInfo = d.answer1.Description,
                                 Updates = d.answer2.Description,
+                                PrefModeofContact = d.PrefContactMode,
                                 HowdidyouKnow = d.Entrychannel,
                                 PrayerComments = d.PrayerComments,
                                 Createdby = d.createdby,
@@ -365,8 +367,9 @@ namespace TECIS.Web.Controllers
                                 OfficeAddress = d.OfficeAdress,
                                 Occupation = d.Occupation,
                                 WouldJoin = d.answer.Description,
-                                MemberShipInfo = d.answer1.Description,
+                                //MemberShipInfo = d.answer1.Description,
                                 Updates = d.answer2.Description,
+                                PrefModeofContact = d.PrefContactMode,
                                 HowdidyouKnow = d.Entrychannel,
                                 PrayerComments = d.PrayerComments,
                                 Createdby = d.createdby,
@@ -495,8 +498,9 @@ namespace TECIS.Web.Controllers
                                 OfficeAddress = d.OfficeAdress,
                                 Occupation = d.Occupation,
                                 WouldJoin = d.answer.Description,
-                                MemberShipInfo = d.answer1.Description,
+                                //MemberShipInfo = d.answer1.Description,
                                 Updates = d.answer2.Description,
+                                PrefModeofContact = d.PrefContactMode,
                                 HowdidyouKnow = d.Entrychannel,
                                 PrayerComments = d.PrayerComments,
                                 Createdby = d.createdby,
