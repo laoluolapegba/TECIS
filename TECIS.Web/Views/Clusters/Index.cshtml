@@ -78,7 +78,7 @@
                                  <th>
                                     @Html.DisplayName("IsActive?")
                                 </th>
-                                <th></th> 
+                                <th></th> <th></th><th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,7 +130,17 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.status)
+
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary btn-sm" })
+                                        </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
+                                        </td>
+                                    <td>
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-white btn-sm" })
                                     </td>
+                                    @*</td>
                                     <td style="width:20px">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000" data-close-others="true">
@@ -143,7 +153,7 @@
                             <li>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { data_modal = "", @class = "btn btn-white btn-sm" })</li>
                         </ul>
                     </div>
-                </td>
+                </td>*@
 
                                 </tr>
                             }
@@ -180,50 +190,6 @@
     @Scripts.Render("~/plugins/jeditable")
     @Scripts.Render("~/plugins/dataTables")
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('.dataTables-example').dataTable({
-                "dom": 'T<"clear">lfrtip',
-                "tableTools": {
-                    "sSwfPath": "../scripts/plugins/dataTables/swf/copy_csv_xls_pdf.swf"
-                }
-            });
-
-            /* Init DataTables */
-            var oTable = $('#editable').dataTable();
-
-            /* Apply the jEditable handlers to the table */
-            oTable.$('td').editable( '../example_ajax.php', {
-                "callback": function( sValue, y ) {
-                    var aPos = oTable.fnGetPosition( this );
-                    oTable.fnUpdate( sValue, aPos[0], aPos[1] );
-                },
-                "submitdata": function ( value, settings ) {
-                    return {
-                        "row_id": this.parentNode.getAttribute('id'),
-                        "column": oTable.fnGetPosition( this )[2]
-                    };
-                },
-
-                "width": "90%",
-                "height": "100%"
-            } );
-
-
-        });
-
-        function fnClickAddRow() {
-            $('#editable').dataTable().fnAddData( [
-                "Custom row",
-                "New row",
-                "New row",
-                "New row",
-                "New row" ] );
-
-        }
-        
-        $(".alert").hide().fadeIn("slow");
-    </script>
+    
 }
 

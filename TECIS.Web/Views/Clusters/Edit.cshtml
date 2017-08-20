@@ -70,12 +70,13 @@
                 @Html.DropDownList("ClusterZone", String.Empty)
                 @Html.ValidationMessageFor(model => model.ClusterZone)
             </div>*@
-            @(Html.Kendo().ComboBox()
+            @(Html.Kendo().ComboBoxFor(model => model.ClusterZone)
           .Name("ClusterZone")
               .Placeholder("Select zone...")
               .DataTextField("ZoneName")
               .DataValueField("ZoneId")
               .Filter(FilterType.Contains)
+              
               .DataSource(source =>
               {
                   source.Read(read =>
@@ -91,7 +92,7 @@
                 @Html.DropDownList("ClusterArea", String.Empty)
                 @Html.ValidationMessageFor(model => model.ClusterArea)
             </div>*@
-            @(Html.Kendo().ComboBox()
+            @(Html.Kendo().ComboBoxFor(model => model.ClusterArea)
       .Name("ClusterArea")
               .Placeholder("Select area...")
           .DataTextField("AreaName")
@@ -123,7 +124,7 @@
                 @Html.DropDownList("ClusterSection", String.Empty)
                 @Html.ValidationMessageFor(model => model.ClusterSection)
             </div>*@
-            @(Html.Kendo().ComboBox()
+            @(Html.Kendo().ComboBoxFor(model => model.ClusterSection)
           .Name("ClusterSection")
               .Placeholder("Select section...")
           .DataTextField("SectionName")
@@ -156,7 +157,7 @@
                 @Html.DropDownList("ClusterType", String.Empty)
                 @Html.ValidationMessageFor(model => model.ClusterType)
             </div>*@
-            @(Html.Kendo().ComboBox()
+            @(Html.Kendo().ComboBoxFor(model => model.ClusterType)
                 .Name("ClusterType")
               .Placeholder("Select Type...")
               .DataTextField("Description")
@@ -202,7 +203,7 @@
         <div class="form-group">
                                 @Html.LabelFor(model => model.clusterhead, "Leader", htmlAttributes: new { @class = "control-label col-md-2" })
                                
-                                  @(Html.Kendo().ComboBox()
+                                  @(Html.Kendo().ComboBoxFor(model => model.clusterhead)
                                     .Name("clusterhead")
           .DataTextField("MemberName")
                                     .DataValueField("MemberId")

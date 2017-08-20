@@ -305,13 +305,17 @@ namespace TECIS.Web.Controllers
             List<string> recipients = new List<string>();
             foreach (var item in selectedRegisters)
             {
-                recipients.Add(item.PhoneNumber);             
+                if (item.PhoneNumber.Trim() != string.Empty) //Add only those with non-empty phone number
+                { 
+                    recipients.Add(item.PhoneNumber);
+                }             
                 
             };
             var editorViewModel = new SMSObject()
             {
-                msisdn = string.Join(",", recipients.ToArray())
+                msisdn = string.Join(",", recipients.ToArray()) 
             };
+            
             return View(editorViewModel);
 
             //if (Request["Selected"] != null)
