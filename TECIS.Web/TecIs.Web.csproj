@@ -284,6 +284,7 @@
     <Compile Include="Controllers\ClusterAreasController.cs" />
     <Compile Include="Controllers\ClustersController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DecisioncardsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
@@ -1949,6 +1950,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Account\Login_2.cshtml" />
+    <Content Include="Views\Members\MyMembers.cshtml" />
+    <Content Include="Views\Guests\AddDecisioncard.cshtml" />
+    <Content Include="Views\Guests\DecisionCard.cshtml" />
+    <Content Include="Views\Decisioncards\Create.cshtml" />
+    <Content Include="Views\Decisioncards\Delete.cshtml" />
+    <Content Include="Views\Decisioncards\Details.cshtml" />
+    <Content Include="Views\Decisioncards\Edit.cshtml" />
+    <Content Include="Views\Decisioncards\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

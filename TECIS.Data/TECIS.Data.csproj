@@ -97,6 +97,7 @@
     <Compile Include="Models\CSection.cs" />
     <Compile Include="Models\CZone.cs" />
     <Compile Include="Models\ClusterType.cs" />
+    <Compile Include="Models\decisioncard.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\TecSchool.cs" />

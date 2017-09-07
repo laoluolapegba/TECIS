@@ -77,6 +77,7 @@ namespace TECIS.Data.Models
         public System.Data.Entity.DbSet<SMSObject> SMSObjects { get; set; }
         public virtual DbSet<RptDefn> RptDefinition { get; set; }
         public virtual DbSet<TecSchoolAttendance> TecSchools { get; set; }
+        public  virtual DbSet<Decisioncard> Decisioncards { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Permission>()

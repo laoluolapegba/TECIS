@@ -73,7 +73,7 @@
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "MemberShip")">
-                <a href="@Url.Action("Index", "Layouts")"><i class="fa fa-diamond"></i> <span class="nav-label">MemberShip</span> <span class="label label-primary pull-right">NEW</span></a>
+                <a href="@Url.Action("Index", "Guests")"><i class="fa fa-diamond"></i> <span class="nav-label">MemberShip</span> <span class="label label-primary pull-right">NEW</span></a>
                 <ul class="nav nav-second-level collapse">
                     <li class="@Html.IsSelected(action: "Guests")"><a href="@Url.Action("Index", "Guests")"> <i class="fa fa-user-plus"></i> Guests</a></li>
                     <li class="@Html.IsSelected(action: "Members")"><a href="@Url.Action("Index", "Members")">Members</a></li>
@@ -83,6 +83,7 @@
                     <li class="@Html.IsSelected(action: "Attendance")"><a href="@Url.Action("Index", "AttendanceRegs")">Attendance</a></li>
                      <li class="@Html.IsSelected(action: "Clusters")"><a href="@Url.Action("MyGuests", "Guests")">My Guests</a></li>
                     <li class="@Html.IsSelected(action: "Clusters")"><a href="@Url.Action("MyMembers", "Members")">My Members</a></li>
+                    <li class="@Html.IsSelected(action: "Guests")"><a href="@Url.Action("Index", "DecisionCards")">Decision Card</a></li>
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "ReportsAnalytics")">

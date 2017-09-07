@@ -69,7 +69,6 @@ namespace TECIS.Web.Controllers
             ViewBag.MaritalStat = new SelectList(db.MaritalStats, "Id", "Description");
             ViewBag.ServiceType = new SelectList(db.ServicesTypes, "Id", "ServiceName");
             return View(new Guest());
-
         }
         
 
@@ -978,6 +977,41 @@ namespace TECIS.Web.Controllers
 
             return Json(guests.Select(o => new { GuestId = o.Id, GuestName = o.Surname }), JsonRequestBehavior.AllowGet);
         }
+
+        //public ActionResult AddDecisioncard()
+        //{
+           
+        //    ViewBag.MaritalStat = new SelectList(db.MaritalStats, "Id", "Description");            
+        //    return View(new Decisioncard());
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[MultipleButton(Name = "action", Argument = "Create")]
+        //public ActionResult AddDecisioncard( Decisioncard card)
+        //{            
+            
+        //    if (ModelState.IsValid)
+        //    {
+        //        card.timecaptured = DateTime.Now;
+        //        card.worshipdate = DateTime.Now;
+                
+        //        if (Request.IsAuthenticated)
+        //        { card.createdby = User.Identity.Name; }
+        //        //guests.worshipdate = DateTime.Now;
+                
+
+        //        db.Decisioncards.Add(card);
+        //        db.SaveChanges();
+        //        Success(string.Format("<b>Card {0}</b> was successfully added.", card.PhoneNumber), true);
+        //        return RedirectToAction("Index");
+        //    }
+            
+        //    ViewBag.MaritalStatus = new SelectList(db.MaritalStats, "Id", "Description", card.MaritalStat);
+        //    //ViewBag.Occupation = new SelectList(db.occupations, "Id", "description", guests.Occupation);
+        //    Danger("Looks like something went wrong. Please check your form.");
+        //    return View(card);
+        //}
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
